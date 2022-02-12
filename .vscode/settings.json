@@ -1,0 +1,39 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "styles/main.css.map": true,
+    "styles/colors.css.map": true,
+    "styles/colors.css": true,
+    "styles/README.md": true,
+    ".vscode": true,
+    "styles/main.css": true,
+    "admin/styles/main.css.map": true,
+    "admin/styles/main.css": true
+  },
+  "hide-files.files": [
+    "styles/main.css.map",
+    "styles/colors.css.map",
+    "styles/colors.css",
+    "styles/README.md",
+    ".vscode",
+    "styles/main.css",
+    "admin/styles/main.css.map",
+    "admin/styles/main.css"
+  ],
+  "cSpell.words": [
+    "confpass",
+    "fullname",
+    "lastlogin",
+    "orangered",
+    "registerscreen",
+    "resu",
+    "sqli",
+    "switchlogin",
+    "usermail"
+  ]
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link href="https://res.cloudinary.com/dr6lvwubh/raw/upload/v1581441981/Anicons/anicons-regular.css" rel="stylesheet">
+  <script defer src="/scripts/util.js"></script>
+  <script defer src="/scripts/loginscreen.js"></script>
+  <script defer src="/scripts/addToCart.js"></script>
+  <script defer src="/scripts/loadItems.js"></script>
+  <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <div class="title">Sweet Dreams Bakery</div>
+    <div class="profileHolder" tabindex="0" onClick="openLogin()">
+      <p>Login</p>
+    </div>
+  </nav>
+  <div id="container">
+
+  </div>
+
+  <template id="skeleton">
+    <div class="card skeleton">
+      <div class="image skeleton"></div>
+      <div class="name skeleton"></div>
+      <div class="price skeleton">FREE</div>
+      <p class="description skeleton"></p>
+      <div class="addcart skeleton"></div>
+    </div>
+  </template>
+  
+  <template id="items">
+    <div class="card" tabindex="0">
+      <img class="image"></img>
+      <span class="name"></span>
+      <span class="price"></span>
+      <p class="description"></p>
+      <div class="addcart" tabindex="0">
+        <span class="iconify" data-icon="mdi-cart-plus"></span>
+        <p class=text>ADD TO CART</p>
+    </div>
+  </template>
+
+  <template id="dropdown">
+    <div class="dropdown">
+    </div>
+  </template>
+
+  <div id="popups">
+  </div>
+</body>
+</html>

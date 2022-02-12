@@ -1,0 +1,29 @@
+
+$main: gold;
+$accent: #19FFD1;
+$primary: #000000;
+$secondary: #FFFFFF;
+
+
+:root {
+  --main-10: #{lighten($main, 40%)};
+  --main-20: #{lighten($main, 30%)};
+  --main-30: #{lighten($main, 20%)};
+  --main-40: #{lighten($main, 10%)};
+  --main-50: #{$main};
+  --main-60: #{darken($main, 10%)};
+  --main-70: #{darken($main, 20%)};
+  --main-80: #{darken($main, 30%)};
+  --main-90: #{darken($main, 40%)};
+  --accent-10: #{lighten($accent, 40%)};
+  --accent-20: #{lighten($accent, 30%)};
+  --accent-30: #{lighten($accent, 20%)};
+  --accent-40: #{lighten($accent, 10%)};
+  --accent-50: #{$accent};
+  --accent-60: #{darken($accent, 10%)};
+  --accent-70: #{darken($accent, 20%)};
+  --accent-80: #{darken($accent, 30%)};
+  --accent-90: #{darken($accent, 40%)};
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+}
