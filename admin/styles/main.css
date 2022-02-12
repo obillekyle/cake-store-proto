@@ -1,1 +1,80 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+.sidebar {
+  width: 300px;
+  border-right: 1px solid var(--main-60);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 12px 0;
+  position: absolute;
+  inset: 60px auto 0 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+  background: var(--main-10);
+  -webkit-transition: width 0.2s, opacity 0.2s;
+  transition: width 0.2s, opacity 0.2s;
+}
+
+.sidebar .sideitem {
+  cursor: pointer;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+  font-variation-settings: "TIME" 100;
+}
+
+.sidebar .sideitem.active {
+  color: var(--main-80);
+  cursor: default;
+}
+
+.sidebar .sideitem p {
+  margin: 0;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.sidebar .sideitem + .icons {
+  border-top: 1px solid var(--main-80);
+}
+
+.sidebar .sideitem:hover {
+  background-color: var(--main-20);
+}
+
+.sidebar .icons {
+  margin-left: auto;
+}
+
+.sidebar.compact .sideitem {
+  font-variation-settings: "TIME" 1;
+}
+
+.sidebar.compact .sideitem p {
+  opacity: 0;
+}
+
+.compact {
+  width: 49px;
+}
+
+.icons {
+  font-family: "Anicons Regular", sans-serif;
+  font-variation-settings: "TIME" 1;
+  font-size: 24px;
+  -webkit-transition: font-variation-settings 0.4s ease;
+  transition: font-variation-settings 0.4s ease;
+}
+
+.icons.active {
+  font-variation-settings: "TIME" 100;
+}
+/*# sourceMappingURL=main.css.map */

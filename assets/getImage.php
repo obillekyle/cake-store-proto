@@ -3,7 +3,7 @@
   include '../_util/db.php';
   ini_set("display_errors", 1);
 
-  if (!$_GET["item"]) noImage();
+  if (!isset($_GET["item"])) noImage();
   $uid = $_GET['item'];
   $sql = "SELECT id,image FROM items WHERE id=$uid";
   $res = mysqli_query($conn,$sql);

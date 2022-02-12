@@ -25,7 +25,7 @@ fetch("/api/getItems.php")
         const image = items.querySelector(".image");
         const aCart = items.querySelector(".addcart");
 
-        var add = () => addCart(data.id ?? 0); 
+        var add = () => addCart(item.id); 
         iCard.setAttribute("data-id", item.id);
         aCart.onclick = add;
         title.textContent = item.name;

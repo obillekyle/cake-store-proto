@@ -1,3 +1,62 @@
-.dashboard {
-  
+.sidebar {
+  width: 300px;
+  border-right: 1px solid var(--main-60);
+  display: flex;
+  padding: 12px 0;
+  position: absolute;
+  inset: 60px auto 0 0;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--main-10);
+  transition: width 0.2s, opacity 0.2s;
+  .sideitem {
+    cursor: pointer;
+    padding: 12px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    gap: 16px;
+    font-variation-settings: "TIME" 100;
+    &.active {
+      color: var(--main-80);
+      cursor: default;
+    }
+    p {
+      margin: 0;
+      margin-top: 6px;
+      white-space: nowrap;
+    }
+    & + .icons {
+      border-top: 1px solid var(--main-80);
+    }
+    &:hover {
+      background-color: var(--main-20);
+    }
+  }
+  .icons {
+    margin-left: auto;
+  }
+  &.compact {
+    .sideitem {
+      font-variation-settings: "TIME" 1;
+      p {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+
+.compact {
+  width: 49px;
+}
+
+.icons {
+  font-family: "Anicons Regular", sans-serif;
+  font-variation-settings: "TIME" 1;
+  font-size: 24px;
+  transition: font-variation-settings 0.4s ease;
+  &.active {
+    font-variation-settings: "TIME" 100;
+  }
 }

@@ -26,12 +26,22 @@
     "admin/styles/main.css"
   ],
   "cSpell.words": [
+    "acon",
+    "Anicons",
     "confpass",
     "fullname",
     "lastlogin",
+    "msidebar",
     "orangered",
     "registerscreen",
     "resu",
+    "sidebarelem",
+    "sideicon",
+    "sideicons",
+    "sideitem",
+    "sidelabel",
+    "sidename",
+    "sidetoggle",
     "sqli",
     "switchlogin",
     "usermail"
