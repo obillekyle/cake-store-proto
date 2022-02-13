@@ -5,19 +5,35 @@
 body {
   color: var(--primary);
   background-color: whitesmoke;
-  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
   margin: 0;
   overflow-x: hidden;
 }
 
-
 :focus {
   outline: none;
-  box-shadow: 0 0 0 4px var(--main-60);
+  box-shadow: 0 0 0 4px var(--outline ,var(--main-60));
+  transition: box-shadow 0.4s;
 }
 
-[tabindex="0"], button {
-  transition: box-shadow 0.4s;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid var(--main-70);
+  -webkit-text-fill-color: var(--main-80);
+  -webkit-box-shadow: 0 0 0px 1000px var(--main-10) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+[tabindex="0"], button, a {
+  transition: box-shadow 0.4s !important;
   user-select: none;
 }
 
@@ -30,11 +46,11 @@ input {
 }
 
 [special-button] {
-  --color: var(--main-50);
-  --text: var(--primary);
-  color: var(--text);
-  background-color: var(--color);
-  color: var(--text);
+  --bg: var(--main-20);
+  --color: var(--primary);
+  --outline: var(--main-60);
+  color: var(--color);
+  background-color: var(--outline);
   font-size: 16px;
   padding: 9px 16px 7px 16px;
   font-family: inherit;
@@ -43,7 +59,7 @@ input {
   border: none;
   user-select: none;
   &[disabled], &[data-disabled] {
-    background: var(--main-10) !important;
+    background: var(--main-10);
     color: gray;
   }
   &:hover {
@@ -51,6 +67,27 @@ input {
     filter: brightness(0.8)
   }
 }
+
+[outline-button] {
+  outline: none;
+  font-size: 16px;
+  font-weight: 700;
+  user-select: none;
+  color: var(--color);
+  font-family: inherit;
+  padding: 9px 16px 7px 16px;
+  border: 1px solid var(--outline);
+  background-color: var(--bg);
+  &[disabled], &[data-disabled] {
+    background: var(--main-10);
+    color: gray;
+  }
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.8)
+  }
+}
+
 
 .hidden {
   display: none !important;
@@ -65,7 +102,7 @@ input {
   position: sticky;
   align-items: center;
   padding: 0 12px;
-  min-height: 60px;
+  height: 60px;
   position: sticky;
   background-color: rgba($main, 0.9);
   .logo {
@@ -73,7 +110,8 @@ input {
     height: 36px;
   }
   .title {
-    font-family: Redressed,"Josefin Sans",Arial, Helvetica, sans-serif;
+    font-display: swap;
+    font-family: Redressed, "Josefin Sans";
     font-size: 32px;
     color: brown;
     flex: 1 1 auto;
@@ -89,8 +127,8 @@ input {
     background: var(--main-30);
     border: 1px solid var(--main-70);
     img {
-      width: 28px;
-      height: 28px;
+      min-width: 28px;
+      min-height: 28px;
       border-radius: 50%;
     }
     p {
@@ -103,6 +141,14 @@ input {
     &:hover {
       filter: brightness(0.8);
       cursor: pointer;
+    }
+  }
+  @media (max-width: 475px) {
+    .title {
+      display: none;
+    }
+    .profileHolder {
+      margin-left: auto;
     }
   }
 }
@@ -126,6 +172,7 @@ input {
   gap: 8px;
   display: flex;
   width: 300px;
+  max-width: calc(100% - 32px);
   position: absolute;
   flex-direction: column;
   inset: auto 16px 16px auto; 
@@ -385,7 +432,8 @@ input {
 .loginModal, .dropdown {
   position: absolute;
   inset: 75px 16px auto auto;
-  min-width: 300px; 
+  width: 300px; 
+  max-width: calc(100% - 32px);
   background: var(--secondary);
   border: 1px solid var(--main-80);
   z-index: 100;

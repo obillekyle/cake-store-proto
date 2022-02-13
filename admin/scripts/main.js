@@ -10,17 +10,13 @@ function checkLogin() {
       const pHolder = document.querySelector(".profileHolder");
       const contain = document.querySelector(".loginModal, .dropdown")
       if (contain) contain.remove();
-      if (!data.user) {
-        location = "/";
-      };
+      if (!data.user) location = "/";
 
       const name = pHolder.querySelector("p");
-      const pImg = document.createElement("img");
+      const pImg = pHolder.querySelector("img");
       pImg.src = `/assets/getProfile.php?user=${data.u_id}`;
       name.textContent = data.user;
 
-      console.log(data.user);
-      pHolder.append(pImg);
       pHolder.onclick = getDropdown;
       login = true;
     });
@@ -36,6 +32,14 @@ function getDropdown() {
   
   const dropdown = document.createElement("div");
   var options = [
+    {
+      name: "Go back to Main page",
+      link: "/",
+      icon: "mdi-basket-outline",
+    },
+    {
+      name: "sep",
+    },
     {
       name: "Profile",
       link: "/cart.php",
@@ -79,9 +83,9 @@ function getDropdown() {
     item.append(name);
     dropdown.append(item);
   });
-
   dropdown.classList.add("dropdown");
-  document.body.append(dropdown);
+  const nav = document.querySelector(".main-nav")
+  document.body.insertBefore(dropdown, nav.nextSibling);
 }
 
 perf("Loaded loginscreen.js", start);

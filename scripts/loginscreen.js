@@ -107,11 +107,11 @@ function getDropdown(role) {
   });
 
   dropdown.classList.add("dropdown");
-  document.body.append(dropdown);
+  const nav = document.querySelector(".main-nav")
+  document.body.insertBefore(dropdown, nav.nextSibling);
 }
 
 const loginscreen = `
-  <!--html-->
   <form id="login">
     <label for="l-username">Username or Email</label>
     <input id="l-username" type="text" min="3" max="100" required/> 
@@ -120,11 +120,9 @@ const loginscreen = `
     <button type="submit" special-button name="submit">Login</button>
     <label class="reg" tabindex="0" onclick="register()">Register Instead</label>
   </form>
-  <!--!html-->
 `;
 
 const registerscreen = `
-  <!--html-->
   <form id="register">
     <label id="fullname">Full name</label>
     <input id="fullname" type="text" min="3" max="100" required/>
@@ -146,7 +144,6 @@ const registerscreen = `
     <label class="login" tabindex="0" onclick="switchlogin()">Go back to Login</label>
 
   </form>
-  <!--!html-->
 `;
 
 function openLogin(user) {
@@ -162,7 +159,8 @@ function openLogin(user) {
   const container = document.createElement("div");
   container.className = "loginModal";
   container.innerHTML = loginscreen;
-  document.body.append(container);
+  const nav = document.querySelector(".main-nav")
+  document.body.insertBefore(container, nav.nextSibling);
 }
 
 function register() {

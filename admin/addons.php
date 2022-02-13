@@ -14,6 +14,8 @@ $user_role = $_SESSION["role"] ?? "";
 
 function Scripts() {
   ?>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)">
     <script defer src="/scripts/util.js"></script>
     <script defer src="/admin/scripts/main.js"></script>
     <script defer src="/admin/scripts/sidebar.js"></script>
@@ -32,6 +34,7 @@ function Nav() {
     <div class="title"><?= $title ?></div>
     <div class="profileHolder" tabindex="0">
       <p><?= $username ?></p>
+      <img/>
     </div>
   </nav>
   <?php
@@ -39,8 +42,9 @@ function Nav() {
 
 function Sidebar() {
   ?>
-    <nav class="sidebar compact">
-      <span class="icons sideitem" sidetoggle>D</span>
+    <nav id="sidebar">
+      <span class="icons sideitem" tabindex="0" sidetoggle>D</span>
+      <div class="sep"></div>
     </nav>
   <?php
 }

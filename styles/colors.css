@@ -20,4 +20,60 @@
   --primary: #000000;
   --secondary: #FFFFFF;
 }
+
+[color="yellow"] {
+  --bg: hsl(51, 100%, 80%);
+  --color: hsl(51, 100%, 20%);
+  --outline: hsl(51, 100%, 40%);
+  --disabled:  hsl(51, 100%, 90%);
+}
+
+[color="green"] {
+  --bg: hsl(125, 100%, 90%) !important;
+  --color: hsl(125, 100%, 20%) !important;
+  --outline: hsl(125, 100%, 40%) !important;
+  --disabled:  hsl(125, 100%, 90%) !important;
+}
+
+[color="blue"] {
+  --bg: hsl(200, 100%, 90%);
+  --color: hsl(200, 100%, 20%);
+  --outline: hsl(200, 100%, 40%);
+  --disabled:  hsl(200, 100%, 90%);
+}
+
+[color="violet"] {
+  --bg: hsl(296, 100%, 90%);
+  --color: hsl(296, 100%, 20%);
+  --outline: hsl(296, 100%, 40%);
+  --disabled:  hsl(296, 100%, 90%);
+}
+
+[color="red"] {
+  --bg: hsl(0, 100%, 90%);
+  --color: hsl(0, 100%, 20%);
+  --outline: hsl(0, 100%, 40%);
+  --disabled:  hsl(0, 100%, 90%);
+}
+
+[color="orange"] {
+  --bg: hsl(25, 100%, 90%);
+  --color: hsl(25, 100%, 20%);
+  --outline: hsl(25, 100%, 40%);
+  --disabled:  hsl(25, 100%, 90%);
+}
+
+[color="pink"] {
+  --bg: hsl(298, 100%, 90%);
+  --color: hsl(298, 100%, 20%);
+  --outline: hsl(298, 100%, 40%);
+  --disabled:  hsl(298, 100%, 90%);
+}
+
+[color="cyan"] {
+  --bg: hsl(176, 100%, 90%);
+  --color: hsl(176, 100%, 20%);
+  --outline: hsl(176, 100%, 40%);
+  --disabled:  hsl(167, 100%, 90%);
+}
 /*# sourceMappingURL=colors.css.map */

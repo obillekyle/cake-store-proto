@@ -1,6 +1,5 @@
 function settings(key, value) {
   
-  
   if (value === null || value === undefined) {
     const setting = localStorage.getItem(key);
     if (setting === null || undefined === setting) return null;
@@ -22,8 +21,10 @@ if (!settings("sidebaropen")) {
   settings("sidebaropen", "false")
 }
 
-const sidebarelem = document.querySelector(".sidebar")
-sidebarelem.classList.toggle("compact", !settings("sidebaropen"))
+const sidebarelem = document.querySelector("#sidebar")
+
+sidebarelem.classList.add("sidebar", !settings("sidebaropen")? "compact" : null)
+
 document.body.addEventListener("click", e => {
   if (e.target.matches("[sidetoggle]")) {
     var isOpen = settings("sidebaropen")
@@ -76,6 +77,7 @@ sidebar.forEach(item => {
     location = link
   }
   
+  sideitem.tabIndex = "0";
   sideitem.classList.add("sideitem");
   sideicon.classList.add("iconify");
 
