@@ -16,13 +16,16 @@ function Scripts() {
   ?>
     <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
     <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/admin/styles/main.css">
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link href="https://res.cloudinary.com/dr6lvwubh/raw/upload/v1581441981/Anicons/anicons-regular.css" rel="stylesheet">
+
+    <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <script defer src="/scripts/util.js"></script>
     <script defer src="/admin/scripts/main.js"></script>
     <script defer src="/admin/scripts/sidebar.js"></script>
-    <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/admin/styles/main.css">
-    <link href="https://res.cloudinary.com/dr6lvwubh/raw/upload/v1581441981/Anicons/anicons-regular.css" rel="stylesheet">
   <?php
 }
 

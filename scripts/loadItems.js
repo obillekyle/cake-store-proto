@@ -38,10 +38,6 @@ fetch("/api/getItems.php")
       }
     );
     perf("Fetched Items", start);
-
   });
-
-
-
-
+  
 perf("Loaded loadItems.js", start)

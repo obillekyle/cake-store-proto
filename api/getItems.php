@@ -5,6 +5,8 @@ include "../_util/response.php";
 header("Content-Type: text/json");
 session_start();
 
+sleep(10);
+
 if (isset($_GET['orders'])) {
   if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') {
     $value = $_GET['last'] ?? "month";
@@ -46,7 +48,6 @@ if ($limit > 50) $limit = 10;
 if ($offset > 100) $offset = 0;
 
 
-sleep(1);
 
 $sql = "SELECT name,id,description,price,stock 
         FROM items 

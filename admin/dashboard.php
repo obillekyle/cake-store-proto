@@ -28,7 +28,7 @@
       <option value="day">Last 24 hours</option>
       <option value="year">Last 1 year</option>
     </select>
-    <sales>
+    <div id="sales">
       <orders class="info">
         <span class="iconify" data-icon="mdi-shopping-outline"></span>
         <p class="info-title">Total Orders</p>
@@ -46,7 +46,7 @@
         <p class="info-title">Total Earnings</p>
         <p class="info-value">...</p>
       </earnings>
-    </sales>
+    </div>
   </main>
 </body>
 </html>
