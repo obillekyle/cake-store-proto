@@ -46,7 +46,46 @@ fetch("/api/getItems.php")
         
       }
     );
-    perf("Fetched Items", start);
   });
+
+document.body.addEventListener("click", e => {
+  if (e.target.matches("#addItem, .closeModal")) {
+    const modal = document.querySelector("template#entry");
+    const overlay = document.querySelector("#overlay");
+    if (!overlay && !e.target.matches(".closeModal")) {
+      document.append(modal.content.cloneNode(true))
+      return;
+    }
+    overlay.remove();
+  }
+})
   
-perf("Loaded loadItems.js", start)
+document.body.addEventListener("change", e=> {
+  if (e.target.matches("#selAll")) {
+    const checked = e.target.checked
+    const element = document.querySelectorAll(".sel");
+
+    element.forEach(e => {
+      e.querySelector("input").checked = checked;
+    })
+  }
+  if (e.target.matches(".sel input:not(:checked)")) {
+    const checked = document.querySelector("#selAll").checked
+    if (checked) {
+      document.querySelector("#selAll").checked = false;
+    }
+  }
+})
+
+document.body.addEventListener("submit", e => {
+  if (e.target.matches("#createItem")) {
+    const name = e.target.querySelector("#name")
+    const desc = e.target.querySelector("#desc")
+    const cost = e.target.querySelector("#cost")
+    const jpeg = e.target.querySelector("#jpeg")
+
+    fetch("")
+  }
+})
+
+

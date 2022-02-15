@@ -496,7 +496,7 @@ input {
       }
     }
     &:focus + label {
-      box-shadow: 0 0 0 4px var(--main-60);
+      box-shadow: 0 0 0 4px var(--outline, var(--main-60));
       background-color: var(--bg, var(--main-20));
     }
   }

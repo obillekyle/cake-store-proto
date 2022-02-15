@@ -33,7 +33,7 @@
           <option value="date">Creation Date</option>
         </select>
         <actions>
-        <button outline-button color="blue" id="selitem">
+          <button outline-button color="blue" id="selitem">
             <span class="iconify" data-icon="mdi-pencil-outline"></span>
           </button>
           <button outline-button color="green" id="additem">
@@ -83,6 +83,18 @@
       </actions>
     </div>
   </template>
+
+  <template id="entry">
+    <div id="overlay">
+        <form id="createItem">
+          <h2>Create New Store Item</>
+          <input type="text" id="name" required max="100" placeholder="Item name"/>
+          <input type="text" id="desc" required placeholder="Description"/>
+          <br>
+          <input type="number" id="cost" required placeholder="Price"/>
+          <input type="image" id="jpeg" required placeholder="Image"/>
+        </form>
+    </div>
   </template>
 </body>
 </html>
