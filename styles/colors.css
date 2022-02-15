@@ -21,59 +21,60 @@
   --secondary: #FFFFFF;
 }
 
-[color="yellow"] {
+[color=yellow] {
   --bg: hsl(51, 100%, 80% ) !important;
   --color: hsl(51, 100%, 20% ) !important;
   --outline: hsl(51, 100%, 40% ) !important;
-  --disabled:  hsl(51, 100%, 90% ) !important;
+  --disabled: hsl(51, 100%, 90% ) !important;
 }
 
-[color="green"] {
+[color=green] {
   --bg: hsl(125, 100%, 90%) !important;
   --color: hsl(125, 100%, 20%) !important;
   --outline: hsl(125, 100%, 40%) !important;
-  --disabled:  hsl(125, 100%, 90%) !important;
+  --disabled: hsl(125, 100%, 90%) !important;
 }
 
-[color="blue"] {
+[color=blue] {
   --bg: hsl(200, 100%, 90% ) !important;
   --color: hsl(200, 100%, 20% ) !important;
   --outline: hsl(200, 100%, 40% ) !important;
-  --disabled:  hsl(200, 100%, 90% ) !important;
+  --disabled: hsl(200, 100%, 90% ) !important;
 }
 
-[color="violet"] {
+[color=violet] {
   --bg: hsl(296, 100%, 90% ) !important;
   --color: hsl(296, 100%, 20% ) !important;
   --outline: hsl(296, 100%, 40% ) !important;
-  --disabled:  hsl(296, 100%, 90% ) !important;
+  --disabled: hsl(296, 100%, 90% ) !important;
 }
 
-[color="red"] {
+[color=red] {
   --bg: hsl(0, 100%, 90% ) !important;
   --color: hsl(0, 100%, 20% ) !important;
   --outline: hsl(0, 100%, 40% ) !important;
-  --disabled:  hsl(0, 100%, 90% ) !important;
+  --disabled: hsl(0, 100%, 90% ) !important;
 }
 
-[color="orange"] {
+[color=orange] {
   --bg: hsl(25, 100%, 90% ) !important;
   --color: hsl(25, 100%, 20% ) !important;
   --outline: hsl(25, 100%, 40% ) !important;
-  --disabled:  hsl(25, 100%, 90% ) !important;
+  --disabled: hsl(25, 100%, 90% ) !important;
 }
 
-[color="pink"] {
+[color=pink] {
   --bg: hsl(298, 100%, 90% ) !important;
   --color: hsl(298, 100%, 20% ) !important;
   --outline: hsl(298, 100%, 40% ) !important;
-  --disabled:  hsl(298, 100%, 90% ) !important;
+  --disabled: hsl(298, 100%, 90% ) !important;
 }
 
-[color="cyan"] {
+[color=cyan] {
   --bg: hsl(176, 100%, 90% ) !important;
   --color: hsl(176, 100%, 20% ) !important;
   --outline: hsl(176, 100%, 40% ) !important;
-  --disabled:  hsl(167, 100%, 90% ) !important;
+  --disabled: hsl(167, 100%, 90% ) !important;
 }
+
 /*# sourceMappingURL=colors.css.map */

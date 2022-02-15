@@ -21,11 +21,9 @@
     <h1>Items</h1>
     <items>
       <nav id="navigator">
-        <input type="checkbox" id="selAll"/>
-        <label for="selAll">
-          <span class="iconify" unchecked data-icon="mdi-checkbox-blank-outline"></span>
-          <span class="iconify" checked data-icon="mdi-checkbox-marked"></span>
-        </label>
+        
+        <?= Checkbox("mdi-checkbox-blank-outline", "", "", "selAll", "yellow", "mdi-checkbox-marked") ?>
+        
         <label for="filterby">Filter by:</label>
         <select color="cyan" id="filterby">
           <option value="item">Id           </option>
@@ -44,8 +42,11 @@
           <button outline-button color="red" id="remitem">
             <span class="iconify" data-icon="mdi-trash-can-outline"></span>
           </button>
-          <input type="checkbox" id="selAll"/>
         </actions>
+        <?= Checkbox("mdi-chevron-down", "toggle-float", "", "toggle-float", "red", "mdi-chevron-up") ?>
+        <div class="dropdown" id="actions-float">
+          
+        </div>
       </nav>
       <div class="all">
         <!-- Items -->
@@ -56,10 +57,12 @@
 
   <template id="skeleton">
     <div class="item skeleton">
+      <div class="checkbox sel">
       <input type="checkbox" disabled>
       <label>
         <span class="iconify" data-icon="mdi-checkbox-blank" unchecked></span>
       </label>
+      </div>
       <div class="image skeleton"></div>
       <div class="name skeleton"></div>
       <div class="price skeleton">FREE</div>
@@ -70,21 +73,13 @@
   
   <template id="items">
     <div class="item" tabindex="0">
-      <input type="checkbox">
-      <label>
-        <span class="iconify" data-icon="mdi-checkbox-blank-outline" unchecked></span>
-        <span class="iconify" data-icon="mdi-checkbox-marked" checked></span>
-      </label>
+      <?= Checkbox("mdi-checkbox-blank-outline", "sel", "", "", "yellow", "mdi-checkbox-marked") ?>
       <img class="image"></img>
       <span class="name"></span>
       <span class="price"></span>
       <p class="description"></p>
       <actions>
-        <input type="checkbox" class="dropdown">
-        <label class="dropdownlabel">
-          <span class="iconify" unchecked data-icon="mdi-dots-vertical-circle-outline"></span>
-          <span class="iconify" checked data-icon="mdi-dots-vertical-circle"></span>
-        </label>
+        <?= Checkbox("mdi-chevron-down", "options", "", "", "yellow", "mdi-chevron-up") ?>
       </actions>
     </div>
   </template>

@@ -25,17 +25,22 @@ fetch("/api/getItems.php")
         const price = items.querySelector(".price");
         const iDesc = items.querySelector(".description");
         const image = items.querySelector(".image");
-        const check = items.querySelector("input[type=checkbox]");
-        const label = items.querySelector("label");
+        const check = items.querySelector(".sel");
+        const aDrop = items.querySelector(".options")
+        
+        const label = check.querySelector("label");
+        const aIcon = aDrop.querySelector("label");
 
         iCard.setAttribute("data-id", item.id);
         label.setAttribute("for", "item_" + item.id);
+        aIcon.setAttribute("for", "drop_" + item.id);
+        check.querySelector("input").id = "item_" + item.id;
+        aDrop.querySelector("input").id = "drop_" + item.id;
         
         title.textContent = item.name;
-        price.textContent = "$" + item.price;
+        price.textContent = item.price;
         iDesc.textContent = item.description;
         
-        check.id = "item_" + item.id;
         image.src = `/assets/getImage.php?item=${item.id}`;
         container.append(items)
         

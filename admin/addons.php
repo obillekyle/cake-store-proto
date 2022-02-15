@@ -14,6 +14,8 @@ $user_role = $_SESSION["role"] ?? "";
 
 function Scripts() {
   ?>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
     <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)">
 
@@ -52,4 +54,23 @@ function Sidebar() {
   <?php
 }
 
-
+function Checkbox(string $icon, string $class, string $label, string $id, ?string $color = "yellow", ?string $activeIcon = null, bool $isActive = false) {
+  
+  if (!$activeIcon) {
+    $disabled = "disabled";
+    $activeIcon = $icon;
+  }
+  
+  ?>
+  <div class="checkbox <?= $class ?>">
+    <input type="checkbox" id="<?= $id ?>" <?= $isActive ? " checked " : " " . "$disabled"?>/>
+    <label for="<?= $id ?>" color="<?= $color ?>">
+      <span class="iconify" data-icon="<?= $icon ?>" unchecked></span>
+      <span class="iconify" data-icon="<?= $activeIcon ?>" checked></span>
+    </label>
+    <label for="<?= $id ?>" color="<?= $color ?>">
+      <?= $label ?>
+    </label>
+  </div>
+  <?php
+}

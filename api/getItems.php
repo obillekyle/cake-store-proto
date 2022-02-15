@@ -5,7 +5,7 @@ include "../_util/response.php";
 header("Content-Type: text/json");
 session_start();
 
-sleep(10);
+// sleep(10);
 
 if (isset($_GET['orders'])) {
   if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') {

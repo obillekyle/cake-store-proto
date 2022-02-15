@@ -32,7 +32,7 @@ CREATE TABLE `carts` (
   `item_id` int(11) NOT NULL,
   `u_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `timestamp` bigint(20) NOT NULL DEFAULT current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -80,7 +80,7 @@ CREATE TABLE `orders` (
   `item_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `value` int(11) NOT NULL,
-  `timestamp` bigint(20) NOT NULL DEFAULT current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
