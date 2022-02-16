@@ -30,7 +30,9 @@ function checkLogin() {
       pHolder.append(pImg);
       pHolder.onclick = dropdown;
       login = true;
-    });
+    }).catch(err => {
+      popup("Error occurred whilst contacting the server", "error")
+    })
 }
   
   // Dropdown Options

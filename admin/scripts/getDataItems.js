@@ -48,15 +48,21 @@ fetch("/api/getItems.php")
     );
   });
 
+
+function closeOverlay() {
+  const overlay = document.querySelector("#overlay");
+  overlay?.classList.add("hideOverlay");
+}
+
 document.body.addEventListener("click", e => {
-  if (e.target.matches("#addItem, .closeModal")) {
+  if (e.target.matches("#additem, #additem *, .closeModal, .closeModal *")) {
     const modal = document.querySelector("template#entry");
     const overlay = document.querySelector("#overlay");
-    if (!overlay && !e.target.matches(".closeModal")) {
-      document.append(modal.content.cloneNode(true))
+    if (!overlay && !e.target.matches(".closeModal, .closeModal *")) {
+      document.body.append(modal.content.cloneNode(true))
       return;
     }
-    overlay.remove();
+    closeOverlay();
   }
 })
   
@@ -75,16 +81,43 @@ document.body.addEventListener("change", e=> {
       document.querySelector("#selAll").checked = false;
     }
   }
+  if (e.target.matches("#jpeg")) {
+    const label = document.querySelector("label[for=jpeg]")
+    const image = e.target.files[0]
+    label.innerHTML = "";
+    label.style.backgroundImage = "url(" + URL.createObjectURL(image) +")"
+  }
 })
 
 document.body.addEventListener("submit", e => {
+  console.log("hello")
   if (e.target.matches("#createItem")) {
+    e.preventDefault();
+
+    const send = e.target.querySelector(".send")
     const name = e.target.querySelector("#name")
     const desc = e.target.querySelector("#desc")
     const cost = e.target.querySelector("#cost")
     const jpeg = e.target.querySelector("#jpeg")
+    const html = send.innerHTML;
 
-    fetch("")
+    send.disabled = true;
+    send.innerHTML = "Processing.."
+    console.log("hello")
+
+    fetch("/api/itemHandler.php")
+    .then(res => res.json())
+    .catch(err => {
+      send.innerHTML = html;
+      send.disabled = false;
+      popup("An Error Occurred, please check the console for more details %c" + err, "error");
+    })
+  }
+})
+
+document.body.addEventListener("transitionend", e=> {
+  if (e.target.matches(".hideOverlay")) {
+    e.target.remove();
   }
 })
 

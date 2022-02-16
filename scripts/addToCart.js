@@ -1,4 +1,4 @@
-var start = performance.now();
+
 function addCart(id) {
   fetch(`/api/addToCart.php?item=${id}`)
     .then(res => res.json())
@@ -10,6 +10,7 @@ function addCart(id) {
       }
       popup(data.message, "error");
       return false;
+    }).catch(err => {
+      popup("Failed to add this item into the cart", "error")
     })
 }
-perf("Loaded addCart.js", start);

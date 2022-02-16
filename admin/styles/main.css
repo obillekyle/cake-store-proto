@@ -312,15 +312,15 @@ items .all {
 }
 
 .item .name {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
   grid-area: t;
 }
 
 .item .price {
   margin-left: auto;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
+  -ms-grid-row: 2;
   -ms-grid-column: 4;
   grid-area: p;
 }
@@ -335,16 +335,17 @@ items .all {
 .item .image {
   width: 100px;
   height: 100px;
-  -ms-grid-row: 1;
+  -ms-grid-row: 2;
   -ms-grid-row-span: 2;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: i;
   background-color: #dcdcdc;
 }
 
 .item .description {
-  -ms-grid-row: 2;
-  -ms-grid-column: 3;
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 3;
   grid-area: d;
   margin: 0;
   font-size: 14px;
@@ -365,7 +366,7 @@ items .all {
   grid-area: a;
 }
 
-.item .toggle-float {
+.item .options {
   display: none;
 }
 
@@ -381,6 +382,11 @@ items .all {
         grid-template-columns: 4px 80px 1fr 60px 48px;
     -ms-grid-rows: 32px 43px;
         grid-template-rows: 32px 43px;
+  }
+  .item .options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   .item .image {
     width: 75px;
@@ -401,6 +407,173 @@ items .all {
             box-shadow: none !important;
     background: none !important;
     border: none !important;
+  }
+}
+
+#overlay {
+  position: fixed;
+  z-index: 200;
+  inset: 0 0 0 0;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  animation: overlayAnimation 0.1s reverse;
+}
+
+#overlay > * {
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
+  animation: childAnimation 0.1s reverse;
+}
+
+#overlay #createItem {
+  position: relative;
+  background-color: white;
+  border: 1px solid var(--main-60);
+  padding: 16px;
+  gap: 4px;
+  width: clamp(300px, 95%, 1000px);
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "h h b b" "i t t p" "i d d d";
+  -ms-grid-columns: 104px 1fr 1fr 75px;
+      grid-template-columns: 104px 1fr 1fr 75px;
+  -ms-grid-rows: 40px 32px 62px;
+      grid-template-rows: 40px 32px 62px;
+  gap: 4px;
+}
+
+#overlay #createItem h2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: h;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#overlay #createItem .image {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: i;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#overlay #createItem .image label[for="jpeg"] {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  background-size: cover;
+  background-position: center;
+  place-items: center;
+  font-size: 48px;
+}
+
+#overlay #createItem .image #jpeg {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+#overlay #createItem .actions {
+  margin-left: auto;
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 4px;
+}
+
+#overlay #createItem #name {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: t;
+}
+
+#overlay #createItem #desc {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 3;
+  grid-area: d;
+  height: 100%;
+  resize: none;
+}
+
+#overlay #createItem #cost {
+  -ms-grid-row: 2;
+  -ms-grid-column: 4;
+  grid-area: p;
+}
+
+#overlay #createItem button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#overlay #createItem button p {
+  margin: 0;
+  margin-top: 3px;
+}
+
+.hideOverlay {
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-animation: unset;
+          animation: unset;
+  -webkit-transition: opacity 0.05s;
+  transition: opacity 0.05s;
+  opacity: 0;
+}
+
+.hideOverlay > * {
+  -webkit-animation: unset;
+          animation: unset;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transition: -webkit-transform 0.05s;
+  transition: -webkit-transform 0.05s;
+  transition: transform 0.05s;
+  transition: transform 0.05s, -webkit-transform 0.05s;
+}
+
+@-webkit-keyframes overlayAnimation {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes overlayAnimation {
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes childAnimation {
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@keyframes childAnimation {
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
   }
 }
 /*# sourceMappingURL=main.css.map */

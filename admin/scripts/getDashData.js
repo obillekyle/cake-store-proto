@@ -33,6 +33,8 @@ function loadData() {
       value.innerText = final[0];
       price.innerText = final[1];
 
+    }).catch(err => {
+      popup("An Error Occurred, please check the console for more details"  + err, "error");
     })
 
   // fetch total carts
@@ -44,5 +46,7 @@ function loadData() {
         return;
       }
       items.innerText = data.message;
+    }).catch(err => {
+      popup("An Error Occurred, please check the console for more details"  + err, "error");
     })
 }

@@ -37,7 +37,7 @@ fetch("/api/getItems.php")
         
       }
     );
-    perf("Fetched Items", start);
-  });
+  }).catch(err => {
+    popup("Server not Available, Please reload the page", "error")
+  })
   
-perf("Loaded loadItems.js", start)

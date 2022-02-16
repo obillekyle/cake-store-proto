@@ -37,8 +37,31 @@ select:-webkit-autofill:focus {
   user-select: none;
 }
 
+
 input {
+  font-family: inherit;
   transition: box-shadow 0.2s;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea {
+  padding: 8px;
+  outline: none;
+  border: 1px solid gainsboro;
+}
+
+textarea {
+  font-family: inherit;
+  resize: vertical;
+  height: 50px;
+}
+
+
+label + input[type="file"] {
+  opacity: 0;
+  width: 0;
 }
 
 * {
@@ -181,6 +204,7 @@ input {
   position: absolute;
   flex-direction: column;
   inset: auto 16px 16px auto; 
+  z-index: 9999;
   div {
     display: flex;
     flex-direction: column;
@@ -384,11 +408,6 @@ input {
     padding: 16px;
     display: flex;
     flex-direction: column;
-    input {
-      padding: 8px;
-      outline: none;
-      border: 1px solid gainsboro;
-    }
     label + input {
       margin-top: 4px;
     }

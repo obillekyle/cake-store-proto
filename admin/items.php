@@ -87,12 +87,26 @@
   <template id="entry">
     <div id="overlay">
         <form id="createItem">
-          <h2>Create New Store Item</>
-          <input type="text" id="name" required max="100" placeholder="Item name"/>
-          <input type="text" id="desc" required placeholder="Description"/>
-          <br>
-          <input type="number" id="cost" required placeholder="Price"/>
-          <input type="image" id="jpeg" required placeholder="Image"/>
+          <h2>Create New Store Items</h2>
+          <div class="image">
+            <input type="file" name="jpeg" id="jpeg" required placeholder="Image" accept="image/*">
+            <label outline-button tabindex="0" color="blue" for="jpeg">
+              <span class="iconify" data-icon="mdi-image-outline"></span>
+            </label>
+          </div>
+          <input type="text" name="name" id="name" required max="100" placeholder="Item name"/>
+          <input type="number" name="cost" id="cost" required placeholder="Price"/>
+          <textarea name="desc" id="desc" required placeholder="Description"></textarea>
+          <div class="actions">
+            <button outline-button type="button" color="red" class="closeModal">
+              <span class="iconify" data-icon="mdi-close"></span>
+              <p>Close</p>
+            </button>
+            <button outline-button type="submit" name="submit" color="green" class="send">
+              <span class="iconify" data-icon="mdi-check"></span>
+              <p>Submit</p>
+            </button>
+          </div>
         </form>
     </div>
   </template>

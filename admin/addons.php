@@ -14,6 +14,7 @@ $user_role = $_SESSION["role"] ?? "";
 
 function Scripts() {
   ?>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
     <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
@@ -42,6 +43,8 @@ function Nav() {
       <img/>
     </div>
   </nav>
+  <div id="popups">
+  </div>
   <?php
 }
 

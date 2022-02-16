@@ -125,10 +125,32 @@ select:-webkit-autofill:focus {
 }
 
 input {
+  font-family: inherit;
   -webkit-transition: -webkit-box-shadow 0.2s;
   transition: -webkit-box-shadow 0.2s;
   transition: box-shadow 0.2s;
   transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea {
+  padding: 8px;
+  outline: none;
+  border: 1px solid gainsboro;
+}
+
+textarea {
+  font-family: inherit;
+  resize: vertical;
+  height: 50px;
+}
+
+label + input[type="file"] {
+  opacity: 0;
+  width: 0;
 }
 
 * {
@@ -316,6 +338,7 @@ input {
       -ms-flex-direction: column;
           flex-direction: column;
   inset: auto 16px 16px auto;
+  z-index: 9999;
 }
 
 #popups div {
@@ -601,12 +624,6 @@ input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-.loginModal form input {
-  padding: 8px;
-  outline: none;
-  border: 1px solid gainsboro;
 }
 
 .loginModal form label + input {

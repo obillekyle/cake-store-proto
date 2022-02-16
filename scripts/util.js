@@ -1,4 +1,3 @@
-var start = performance.now();
 function popup(message, level) {
 
   const popups = document.querySelector('#popups');
@@ -132,6 +131,8 @@ document.addEventListener("submit", e => {
         return
       }
       popup(data.message, "warn");
+    }).catch(err => {
+      popup("An Error Occurred Login", "error");
     })
   }
 
@@ -175,7 +176,8 @@ document.addEventListener("submit", e => {
         return
       }
       popup(data.message, "warn");
+    }).catch(err => {
+      popup("An Error Occurred - Register", "error");
     })
   }
 })
-perf("Loaded util.js", start);

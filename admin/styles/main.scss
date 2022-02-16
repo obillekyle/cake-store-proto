@@ -256,7 +256,7 @@ items {
   actions {
     grid-area: a;
   }
-  .toggle-float {
+  .options {
     display: none;
   }
   @media (max-width: 525px) {
@@ -267,6 +267,9 @@ items {
   @media (max-width: 650px) {
     grid-template-columns: 4px 80px 1fr 60px 48px;
     grid-template-rows: 32px 43px;
+    .options {
+      display: flex;
+    }
     .image {
       width: 75px;
       height: 75px;
@@ -284,5 +287,109 @@ items {
         border: none !important;
       }
     }
+  }
+}
+
+#overlay {
+  position: fixed;
+  z-index: 200;
+  inset: 0 0 0 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  animation: overlayAnimation 0.1s reverse;
+  > * {
+    animation-delay: 150ms;
+    animation: childAnimation 0.1s reverse;
+  }
+  #createItem {
+    position: relative;
+    background-color: white;
+    border: 1px solid var(--main-60);
+    padding: 16px;
+    gap: 4px;
+    width: clamp(300px, 95%, 1000px);
+    display: grid;
+    grid-template-areas: 
+      "h h b b"
+      "i t t p"
+      "i d d d"
+    ;
+    grid-template-columns: 104px 1fr 1fr 75px;
+    grid-template-rows: 40px 32px 62px;
+    gap: 4px;
+    h2 {
+      grid-area: h;
+      align-self: center;
+    }
+    .image {
+      grid-area: i;
+      display: flex;
+      label[for="jpeg"] {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        background-size: cover;
+        background-position: center;
+        place-items: center;
+        font-size: 48px;
+      }
+      #jpeg {
+        opacity: 0;
+        height: 0;
+        width: 0;
+      }
+    }
+    .actions {
+      margin-left: auto;
+      grid-area: b;
+      display: flex;
+      gap: 4px;
+    }
+    #name {
+      grid-area: t;
+    }
+    #desc {
+      grid-area: d;
+      height: 100%;
+      resize: none;
+    }
+    #cost {
+      grid-area: p;
+    }
+    button {
+      align-items: center;
+      padding: 0 8px;
+      display: flex;
+      p {
+        margin: 0;
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+
+.hideOverlay {
+  transform-origin: center;
+  animation: unset;
+  transition: opacity 0.05s;
+  opacity: 0;
+  > * {
+    animation: unset;
+    transform: scale(0.9);
+    transition: transform 0.05s;
+  }
+}
+
+@keyframes overlayAnimation {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes childAnimation {
+  100% {
+    transform: scale(0.9);
   }
 }

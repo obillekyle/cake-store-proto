@@ -31,13 +31,17 @@
     "cartitems",
     "confpass",
     "DATEDIFF",
+    "filterby",
     "fullname",
     "lastlogin",
     "msidebar",
     "orangered",
     "registerscreen",
+    "remitem",
     "resu",
     "salesinfo",
+    "selectfile",
+    "selitem",
     "sidebarelem",
     "sideicon",
     "sideicons",
@@ -47,6 +51,7 @@
     "sidetoggle",
     "sqli",
     "switchlogin",
+    "tabindex",
     "usermail"
   ]
 }
