@@ -1,19 +1,19 @@
 function settings(key, value) {
   
   if (value === null || value === undefined) {
-    const setting = localStorage.getItem(key);
-    if (setting === null || undefined === setting) return null;
-    if (setting === 'true' || setting === 'false') ;
-    return JSON.parse(setting);
+    const setting = localStorage.getItem(key)
+    if (setting === null || undefined === setting) return null
+    if (setting === 'true' || setting === 'false') 
+    return JSON.parse(setting)
   }
 
   if (typeof value === "boolean") {
-    value = value ? "true" : "false";
+    value = value ? "true" : "false"
     console.log(value, "passes")
-    localStorage.setItem(key, value);
-    return value;
+    localStorage.setItem(key, value)
+    return value
   }
-  localStorage.setItem(key, value);
+  localStorage.setItem(key, value)
 
 }
 
@@ -62,31 +62,31 @@ const sidebar = [
 
 sidebar.forEach(item => {
 
-  const msidebar = document.querySelector(".sidebar");
+  const msidebar = document.querySelector(".sidebar")
 
-  const { name, link, icon, acon } = item;
+  const { name, link, icon, acon } = item
 
-  const sideitem = document.createElement("div");
-  const sidename = document.createElement("p");
-  const sideicon = document.createElement("span");
+  const sideitem = document.createElement("div")
+  const sidename = document.createElement("p")
+  const sideicon = document.createElement("span")
 
-  sidename.textContent = name;
+  sidename.textContent = name
   sideicon.dataset.icon = icon
 
   sideitem.onclick = () => {
     location = link
   }
   
-  sideitem.tabIndex = "0";
-  sideitem.classList.add("sideitem");
-  sideicon.classList.add("iconify");
+  sideitem.tabIndex = "0"
+  sideitem.classList.add("sideitem")
+  sideicon.classList.add("iconify")
 
   if (location.pathname === link) {
-    sideitem.classList.add("active");
-    sideicon.dataset.icon = acon;
+    sideitem.classList.add("active")
+    sideicon.dataset.icon = acon
   }
 
-  sideitem.append(sideicon, sidename);
+  sideitem.append(sideicon, sidename)
   msidebar.append(sideitem)
 
 })

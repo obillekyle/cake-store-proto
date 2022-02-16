@@ -1,35 +1,35 @@
-var start = performance.now();
-let login = false;
+var start = performance.now()
+let login = false
 
 // Check if there is user signed in
-checkLogin();
+checkLogin()
 function checkLogin() {
   fetch("/api/loginHandler.php")
     .then((res) => res.json())
     .then((data) => {
-      const pHolder = document.querySelector(".profileHolder");
+      const pHolder = document.querySelector(".profileHolder")
       const contain = document.querySelector(".loginModal, .dropdown")
-      if (contain) contain.remove();
+      if (contain) contain.remove()
       if (!data.user) {
-        pHolder.innerHTML = `<p>Login</p>`;
+        pHolder.innerHTML = `<p>Login</p>`
         pHolder.onclick = () => {
           openLogin(data.user ?? null)
-        };
-        return;
-      };
+        }
+        return
+      }
 
-      const name = pHolder.querySelector("p");
-      const pImg = document.createElement("img");
-      pImg.src = `/assets/getProfile.php?user=${data.u_id}`;
-      name.textContent = data.user;
+      const name = pHolder.querySelector("p")
+      const pImg = document.createElement("img")
+      pImg.src = `/assets/getProfile.php?user=${data.u_id}`
+      name.textContent = data.user
 
-      console.log(data.user);
+      console.log(data.user)
       const dropdown = () => {
-        getDropdown(data.role);
-      };
-      pHolder.append(pImg);
-      pHolder.onclick = dropdown;
-      login = true;
+        getDropdown(data.role)
+      }
+      pHolder.append(pImg)
+      pHolder.onclick = dropdown
+      login = true
     }).catch(err => {
       popup("Error occurred whilst contacting the server", "error")
     })
@@ -39,14 +39,14 @@ function checkLogin() {
 function getDropdown(role) {
 
   if (document.querySelector(".dropdown")) {
-    document.querySelector(".dropdown").classList.toggle("hidden");
-    return;
+    document.querySelector(".dropdown").classList.toggle("hidden")
+    return
   }
 
   if (!role) {
-    document.querySelector(".dropdown").remove();
-    document.querySelector(".profileHolder").onclick = openLogin;
-    return;
+    document.querySelector(".dropdown").remove()
+    document.querySelector(".profileHolder").onclick = openLogin
+    return
   } 
 
   var options = [
@@ -59,13 +59,13 @@ function getDropdown(role) {
       name: "Logout",
       clickFn: () => {
         fetch("/api/loginHandler.php?logout=true")
-            .then(setTimeout(_ => checkLogin(), 100));
+            .then(setTimeout(_ => checkLogin(), 100))
       },
       icon: "mdi-logout-variant",
     },
-  ];
+  ]
   
-  const dropdown = document.createElement("div");
+  const dropdown = document.createElement("div")
   if (role.toLowerCase() === "admin")
     options = [
       {
@@ -77,40 +77,40 @@ function getDropdown(role) {
         name: "sep",
       },
       ...options,
-    ];
+    ]
 
   options.forEach(option => {
     if (option.name === "sep") {
-      const item = document.createElement("div");
-      item.className = "separator";
-      dropdown.append(item);
-      return;
+      const item = document.createElement("div")
+      item.className = "separator"
+      dropdown.append(item)
+      return
     }
 
     
     const clickFn = option.link ? () => {
-      location = option.link;
-    } : option.clickFn;
+      location = option.link
+    } : option.clickFn
 
-    const item = document.createElement("div");
-    const icon = document.createElement("span");
-    const name = document.createElement("p");
+    const item = document.createElement("div")
+    const icon = document.createElement("span")
+    const name = document.createElement("p")
 
-    item.tabIndex = "0";
-    item.onclick = clickFn;
-    icon.className = "iconify";
-    item.className = "optioncard";
-    name.innerText = option.name;
-    icon.dataset.icon = option.icon;
+    item.tabIndex = "0"
+    item.onclick = clickFn
+    icon.className = "iconify"
+    item.className = "optioncard"
+    name.innerText = option.name
+    icon.dataset.icon = option.icon
 
-    item.append(icon);
-    item.append(name);
-    dropdown.append(item);
-  });
+    item.append(icon)
+    item.append(name)
+    dropdown.append(item)
+  })
 
-  dropdown.classList.add("dropdown");
+  dropdown.classList.add("dropdown")
   const nav = document.querySelector(".main-nav")
-  document.body.insertBefore(dropdown, nav.nextSibling);
+  document.body.insertBefore(dropdown, nav.nextSibling)
 }
 
 const loginscreen = `
@@ -122,7 +122,7 @@ const loginscreen = `
     <button type="submit" special-button name="submit">Login</button>
     <label class="reg" tabindex="0" onclick="register()">Register Instead</label>
   </form>
-`;
+`
 
 const registerscreen = `
   <form id="register">
@@ -146,37 +146,37 @@ const registerscreen = `
     <label class="login" tabindex="0" onclick="switchlogin()">Go back to Login</label>
 
   </form>
-`;
+`
 
 function openLogin(user) {
   if (user) {
-    popup("You are already logged in", "warn");
-    return;
+    popup("You are already logged in", "warn")
+    return
   }
   if (document.querySelector(".loginModal")) {
-    const container = document.querySelector(".loginModal");
-    container.remove();
-    return;
+    const container = document.querySelector(".loginModal")
+    container.remove()
+    return
   }
-  const container = document.createElement("div");
-  container.className = "loginModal";
-  container.innerHTML = loginscreen;
+  const container = document.createElement("div")
+  container.className = "loginModal"
+  container.innerHTML = loginscreen
   const nav = document.querySelector(".main-nav")
-  document.body.insertBefore(container, nav.nextSibling);
+  document.body.insertBefore(container, nav.nextSibling)
 }
 
 function register() {
   if (document.querySelector(".loginModal")) {
-    const container = document.querySelector(".loginModal");
-    container.innerHTML = registerscreen;
+    const container = document.querySelector(".loginModal")
+    container.innerHTML = registerscreen
   }
 }
 
 function switchlogin() {
   if (document.querySelector(".loginModal")) {
-    const container = document.querySelector(".loginModal");
-    container.innerHTML = loginscreen;
+    const container = document.querySelector(".loginModal")
+    container.innerHTML = loginscreen
   }
 }
 
-perf("Loaded loginscreen.js", start);
+perf("Loaded loginscreen.js", start)
