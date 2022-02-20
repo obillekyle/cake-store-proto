@@ -97,7 +97,6 @@ document.addEventListener("keyup", e => {
     if (pass.value == conf.value) {
       pass.style.border = "1px solid var(--main-60)"
       conf.style.border = "1px solid var(--main-60)"
-      console.log("True")
       if ( width > 50 ) {
         btn.disabled = false
         delete btn.dataset.disabled
@@ -128,7 +127,6 @@ document.addEventListener("click", e => {
     if (e.target.matches(".checkbox *")) return;
     const recursive = elem => {
       if (elem.matches(":focus, [tabindex]")) return elem;
-      console.log(elem)
       return recursive(elem.parentElement); 
     }
     const target = recursive(e.target);

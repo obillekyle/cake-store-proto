@@ -1,6 +1,6 @@
 <?php
 
-include "./getConfig.php";
+include "getConfig.php";
 
 function encrypt($data) {
   global $config;

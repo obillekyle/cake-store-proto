@@ -11,6 +11,7 @@
   <title><?= $title ?></title>
 
   <?= Scripts() ?>  
+  <script defer src="/admin/scripts/getUsers.js"></script>
   <link rel="stylesheet" href="/admin/styles/users.css">
 </head>
 <body>
@@ -32,13 +33,17 @@
           <span class="iconify" data-icon="mdi-magnify"></span>
         </button>
       </form>
-      <label class="button accept" color="green" tabindex="0">
-        <span class="iconify" data-icon="mdi-check"></span>
-        <p>Fulfill</p>
+      <label class="button accept" color="blue" tabindex="0">
+        <span class="iconify" data-icon="mdi-pencil-outline"></span>
+        <p>Edit</p>
+      </label>
+      <label class="button deny" color="orange" tabindex="0">
+        <span class="iconify" data-icon="mdi-cancel"></span>
+        <p>Ban</p>
       </label>
       <label class="button deny" color="red" tabindex="0">
         <span class="iconify" data-icon="mdi-trash-can-outline"></span>
-        <p>Reject</p>
+        <p>Purge</p>
       </label>
     </actions>
     <div class="table">
@@ -47,8 +52,8 @@
         <p></p>
         <p>Name</p>
         <div class="username">Username</div>
-        <div class="quantity">Role</div>
-        <div class="price"></div>
+        <div class="email">Email</div>
+        <div class="role">Role</div>
         <p></p>
       </header>
       <!-- Items -->
@@ -64,8 +69,8 @@
       <img class="profile"></img>
       <div class="fullName"></div>
       <div class="username"></div>
+      <div class="email"></div>
       <div class="role"></div>
-      <div class="price"></div>
       <?= Checkbox("mdi-chevron-down", "drop", "" , "", "", "mdi-chevron-up") ?>
     </card>
     <detail></detail>

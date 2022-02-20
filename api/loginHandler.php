@@ -74,7 +74,8 @@ if (strtolower($method) === "register") {
     strlen($mail) > 100 || 
     $_POST["pass"] != $conf ||
     strlen($_POST["pass"]) < 6 || 
-    strlen($_POST["pass"]) > 128 
+    strlen($_POST["pass"]) > 128 ||
+    preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $user)
   ) response(false, "Invalid sent data");
 
   $u_ip = $_SERVER['REMOTE_ADDR'];
@@ -84,14 +85,15 @@ if (strtolower($method) === "register") {
   $resu = mysqli_query($conn, $sqli);
 
   if (!$resu || $resu->num_rows > 0) response(false, "Email is already registered");
-  $sqli = "INSERT INTO users (ip,username,fullname,email,password,proxy_ip) VALUES ('$u_ip', '$user', '$name', '$mail', '$pass', '$prox')";
+  $sqli = "INSERT INTO users (ip,username,fullname,email,password,proxy_ip) 
+           VALUES ('$u_ip', '$user', '$name', '$mail', '$pass', '$prox')";
   $resu = mysqli_query($conn, $sqli);
   if (!$resu) response(false, "Internal Error Occurred");
 
   $sqli = "SELECT id FROM users WHERE username='$user'";
   $resu = mysqli_query($conn, $sqli);
   if (!$resu) response(false, "Internal Error Occurred");
-
+  
   $row = mysqli_fetch_assoc($resu);
   $_SESSION["user"] = $user;
   $_SESSION["role"] = $row['role'] ?? "Member";

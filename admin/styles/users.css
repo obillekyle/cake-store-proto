@@ -127,7 +127,7 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-[tabindex="0"], button, a {
+[tabindex="0"]:not(.button), button, a {
   -webkit-transition: -webkit-box-shadow 0.4s !important;
   transition: -webkit-box-shadow 0.4s !important;
   transition: box-shadow 0.4s !important;
@@ -206,10 +206,10 @@ label + input[type="file"] {
   background-color: var(--bg, var(--secondary));
   -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
           box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  -webkit-transition: width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease;
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: width 0.5s ease, min-width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.5s ease, min-width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, min-width 0.5s ease;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, min-width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover, .button:focus {
@@ -773,10 +773,10 @@ form.search {
   height: 36px;
   -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
           box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  -webkit-transition: width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease;
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: width 0.5s ease, min-width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.5s ease, min-width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, min-width 0.5s ease;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, min-width 0.5s ease, -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 4px;
   background: var(--bg, var(--secondary));
 }
@@ -935,12 +935,16 @@ main {
   gap: 6px;
   row-gap: 0;
   min-width: 600px;
-  -ms-grid-columns: 24px 75px minmax(150px, 1fr) 75px 75px 75px 32px;
-      grid-template-columns: 24px 75px minmax(150px, 1fr) 75px 75px 75px 32px;
+  -ms-grid-columns: 24px 75px 1fr 100px 150px 40px 32px;
+      grid-template-columns: 24px 75px 1fr 100px 150px 40px 32px;
 }
 
-.table .price, .table .quantity, .table .username {
-  margin-left: auto;
+.table .email, .table .username {
+  margin: 0 auto;
+}
+
+.table .role {
+  margin: 0 auto;
 }
 
 .table header {
@@ -991,13 +995,8 @@ main {
           box-shadow: 0 0 0 4px var(--outline, var(--main-60)) inset;
 }
 
-.table card .itemName {
+.table card .fullName {
   font-weight: bold;
-}
-
-.table card .itemImage {
-  -webkit-box-shadow: 0 0 0 1px var(--main-80);
-          box-shadow: 0 0 0 1px var(--main-80);
 }
 
 .table card .sel, .table card .drop {
@@ -1020,11 +1019,20 @@ main {
   background: none !important;
 }
 
-.table card .itemImage {
+.table card .profile {
   -o-object-fit: contain;
      object-fit: contain;
   width: 75px;
   height: 75px;
+}
+
+.table card .email, .table card .role {
+  margin-left: auto;
+}
+
+.table card .email {
+  font-size: 14px;
+  color: dimgray;
 }
 
 .table detail {
@@ -1034,18 +1042,26 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   min-width: 600px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   width: 100%;
   -webkit-transition: height 0.2s;
   transition: height 0.2s;
   padding: 0 16px;
+  font-size: 12px;
 }
 
 .table detail:nth-of-type(even) {
   background: var(--shade);
+}
+
+.table detail br {
+  content: "";
+  line-height: 22px;
+  height: 0;
 }
 
 .table .show {
@@ -1065,6 +1081,7 @@ actions {
 
 actions .button {
   width: 96px;
+  min-width: 96px;
   overflow: hidden;
 }
 
@@ -1074,10 +1091,11 @@ actions .search {
           flex: 1 0 auto;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 612px) {
   actions .button {
     padding: 0 8px;
     width: 40px;
+    min-width: 40px;
   }
   actions .button p {
     display: none !important;
