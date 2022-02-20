@@ -10,8 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $title ?></title>
 
-  <?= Scripts() ?>  
-  <link rel="stylesheet" href="/admin/styles/users.css">
+  <?= Scripts() ?>
+  <script defer src="/admin/scripts/getOrders.js"></script>
+  <link rel="stylesheet" href="/admin/styles/orders.css">
 </head>
 <body>
 <?php
@@ -19,7 +20,7 @@
   Sidebar();
 ?>
   <main>
-    <h1>Users</h1>
+    <h1>Orders</h1>
 
     <actions>
       <label class="button" color="main" tabindex="0">
@@ -45,10 +46,10 @@
       <header>
         <?= Checkbox("mdi-checkbox-blank-outline", "selAll", "Select all" , "selAll", "", "mdi-checkbox-marked")?>
         <p></p>
-        <p>Name</p>
-        <div class="username">Username</div>
-        <div class="quantity">Role</div>
-        <div class="price"></div>
+        <p>Item</p>
+        <div class="username">User</div>
+        <div class="quantity">Amount</div>
+        <div class="price">Price</div>
         <p></p>
       </header>
       <!-- Items -->
@@ -61,10 +62,10 @@
         <?= Checkbox("mdi-checkbox-blank-outline", "sel", "" , "", "", "mdi-checkbox-marked") ?>
         <div class="id"></div>
       </div>
-      <img class="profile"></img>
-      <div class="fullName"></div>
+      <img class="itemImage"></img>
+      <div class="itemName"></div>
       <div class="username"></div>
-      <div class="role"></div>
+      <div class="quantity"></div>
       <div class="price"></div>
       <?= Checkbox("mdi-chevron-down", "drop", "" , "", "", "mdi-chevron-up") ?>
     </card>

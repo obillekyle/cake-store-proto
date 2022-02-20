@@ -1,24 +1,32 @@
 :root {
-  --main-10: #fff7cc;
-  --main-20: #ffef99;
-  --main-30: #ffe766;
-  --main-40: #ffdf33;
-  --main-50: gold;
-  --main-60: #ccac00;
-  --main-70: #998100;
-  --main-80: #665600;
-  --main-90: #332b00;
-  --accent-10: #e5fffa;
-  --accent-20: #b2fff0;
-  --accent-30: #7fffe5;
-  --accent-40: #4cffdb;
+  --main-10: #f0fbff;
+  --main-20: #e0f7ff;
+  --main-30: #d1f3ff;
+  --main-40: #c2efff;
+  --main-50: #00bbff;
+  --main-60: #0096cc;
+  --main-70: #007099;
+  --main-80: #004b66;
+  --main-90: #002533;
+  --accent-10: rgba(25, 255, 209, 0.2);
+  --accent-20: rgba(25, 255, 209, 0.4);
+  --accent-30: rgba(25, 255, 209, 0.6);
+  --accent-40: rgba(25, 255, 209, 0.8);
   --accent-50: #19FFD1;
   --accent-60: #00e5b7;
   --accent-70: #00b28e;
   --accent-80: #007f66;
   --accent-90: #004c3d;
-  --primary: #000000;
-  --secondary: #FFFFFF;
+  --primary: #111;
+  --secondary: #fff;
+  --shade: rgba(128, 128, 128, 0.1);
+}
+
+[color="main"] {
+  --bg: var(--main-20) !important;
+  --color: var(--main-80) !important;
+  --outline: var(--main-60) !important;
+  --disabled:  var(--main-10) !important;
 }
 
 [color="yellow"] {

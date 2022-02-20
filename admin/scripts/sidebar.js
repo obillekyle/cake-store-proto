@@ -41,6 +41,12 @@ const sidebar = [
     link: "/admin/dashboard.php"
   },
   {
+    name: "Orders",
+    icon: "mdi-shopping-outline",
+    acon: "mdi-shopping",
+    link: "/admin/orders.php"
+  },
+  {
     name: "Manage Items",
     icon: "mdi-store-outline",
     acon: "mdi-store",
@@ -60,7 +66,7 @@ const sidebar = [
   }
 ]
 
-sidebar.forEach(item => {
+sidebar.forEach((item, index) => {
 
   const msidebar = document.querySelector(".sidebar")
 
@@ -77,7 +83,8 @@ sidebar.forEach(item => {
     location = link
   }
   
-  sideitem.tabIndex = "0"
+  sideitem.tabIndex = "-1"
+  sideitem.setAttribute("index", index + 1)
   sideitem.classList.add("sideitem")
   sideicon.classList.add("iconify")
 

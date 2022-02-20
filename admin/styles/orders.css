@@ -911,4 +911,207 @@ main {
     padding: 16px 8px;
   }
 }
-/*# sourceMappingURL=main.css.map */
+
+.table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--main-60);
+  overflow-x: auto;
+  min-height: 124px;
+}
+
+.table card, .table header {
+  display: -ms-grid;
+  display: grid;
+  padding: 0 8px;
+  width: 100%;
+  gap: 6px;
+  row-gap: 0;
+  min-width: 600px;
+  -ms-grid-columns: 24px 75px minmax(150px, 1fr) 75px 75px 75px 32px;
+      grid-template-columns: 24px 75px minmax(150px, 1fr) 75px 75px 75px 32px;
+}
+
+.table .price, .table .quantity, .table .username {
+  margin-left: auto;
+}
+
+.table header {
+  min-height: 32px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: var(--main-10);
+  border-bottom: 1px solid var(--main-60);
+}
+
+.table header .selAll {
+  width: 24px;
+  height: 24px;
+}
+
+.table header .selAll input:focus + label {
+  color: var(--outline);
+}
+
+.table header .selAll label {
+  padding: 0;
+  min-width: 24px;
+  min-height: 24px;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background: none !important;
+}
+
+.table header p {
+  margin: 0;
+}
+
+.table card {
+  min-height: 100px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.table card:nth-of-type(even) {
+  background: var(--shade);
+}
+
+.table card:focus {
+  -webkit-box-shadow: 0 0 0 4px var(--outline, var(--main-60)) inset;
+          box-shadow: 0 0 0 4px var(--outline, var(--main-60)) inset;
+}
+
+.table card .itemName {
+  font-weight: bold;
+}
+
+.table card .itemImage {
+  -webkit-box-shadow: 0 0 0 1px var(--main-80);
+          box-shadow: 0 0 0 1px var(--main-80);
+}
+
+.table card .sel, .table card .drop {
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.table card .sel input:focus + label, .table card .drop input:focus + label {
+  color: var(--outline, var(--main-60));
+}
+
+.table card .sel label, .table card .drop label {
+  padding: 0;
+  min-width: 24px;
+  min-height: 24px;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background: none !important;
+}
+
+.table card .itemImage {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 75px;
+  height: 75px;
+}
+
+.table detail {
+  min-height: 0px;
+  height: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 600px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-transition: height 0.2s;
+  transition: height 0.2s;
+  padding: 0 16px;
+}
+
+.table detail:nth-of-type(even) {
+  background: var(--shade);
+}
+
+.table .show {
+  height: 50px;
+}
+
+actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 56px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+
+actions .button {
+  width: 96px;
+  overflow: hidden;
+}
+
+actions .search {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+@media (max-width: 500px) {
+  actions .button {
+    padding: 0 8px;
+    width: 40px;
+  }
+  actions .button p {
+    display: none !important;
+  }
+}
+
+#overlay #confirm {
+  background-color: white;
+  border: 1px solid var(--main-60);
+  padding: 16px;
+  gap: 4px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#overlay #confirm h2 {
+  margin: 0;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+#overlay #confirm p {
+  color: dimgray;
+  background: smoke;
+}
+
+#overlay #confirm div {
+  gap: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=orders.css.map */

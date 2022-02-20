@@ -12,12 +12,15 @@ function loadData() {
   const order = document.querySelector("orders")
   const money = document.querySelector("earnings")
   const carts = document.querySelector("cartitems")
+  const stale = document.querySelector("pending")
   const value = order.querySelector(".info-value")
   const price = money.querySelector(".info-value")
   const items = carts.querySelector(".info-value")
+  const oPend = stale.querySelector(".info-value")
   value.innerText = "..."
   price.innerText = "..."
   items.innerText = "..."
+  oPend.innerText = "..."
 
   // get dropdown value that is located to the dashboard
   var salesinfo = document.querySelector("select#chart-sales")
@@ -30,11 +33,12 @@ function loadData() {
         return
       }
       const final = data.message.split("|")
-      value.innerText = final[0]
-      price.innerText = final[1]
+      animateValue(value, 0, final[0], 1000)
+      animateValue(price, 0, final[1], 1000)
 
     }).catch(err => {
-      popup("An Error Occurred, please check the console for more details"  + err, "error")
+      popup("An Error Occurred, please check the console for more details", "error")
+      throw err;
     })
 
   // fetch total carts
@@ -45,8 +49,22 @@ function loadData() {
         popup(data.message, "warn")
         return
       }
-      items.innerText = data.message
+      animateValue(items, 0, data.message, 1000)
     }).catch(err => {
-      popup("An Error Occurred, please check the console for more details"  + err, "error")
+      popup("An Error Occurred, please check the console for more details", "error")
+      throw err;
+    })
+
+  fetch(`/api/getItems.php?pending=true&last=${salesinfo.value}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success) {
+        popup(data.message, "warn")
+        return
+      }
+      animateValue(oPend, 0, data.message, 1000)
+    }).catch(err => {
+      popup("An Error Occurred, please check the console for more details", "error")
+      throw err;
     })
 }

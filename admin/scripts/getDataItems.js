@@ -10,14 +10,22 @@ for (let i = 0; i < 10; i++) {
   container.append(card)
 }
 
-fetch("/api/getItems.php")
+fetch("/api/itemHandler.php")
   .then(res => res.json())
   .then(data => {
-    data.forEach( 
+    if (!data.success) {
+      popup(data.message, "warn");
+      return;
+    } 
+    container.querySelectorAll(".skeleton").forEach( skeleton => {
+      skeleton.remove()
+    })
+    if  (data.items.length === 0) {
+      popup("No found items", "info");
+      return;
+    }
+    data.items.forEach( 
       item => {
-        container.querySelectorAll(".skeleton").forEach( skeleton => {
-          skeleton.remove()
-        })
 
         const items = document.querySelector("#items").content.cloneNode(true)
         const iCard = items.querySelector(".item")
@@ -26,36 +34,37 @@ fetch("/api/getItems.php")
         const iDesc = items.querySelector(".description")
         const image = items.querySelector(".image")
         const check = items.querySelector(".sel")
-        const aDrop = items.querySelector(".options")
-        
+        const stock = items.querySelector(".stock")
+        const shown = items.querySelector(".visibility")
         const label = check.querySelector("label")
-        const aIcon = aDrop.querySelector("label")
+        const iShow = document.createElement("span");
+
 
         iCard.setAttribute("data-id", item.id)
+        iCard.setAttribute("data-info", JSON.stringify(item));
         label.setAttribute("for", "item_" + item.id)
-        aIcon.setAttribute("for", "drop_" + item.id)
         check.querySelector("input").id = "item_" + item.id
-        aDrop.querySelector("input").id = "drop_" + item.id
+
+        iShow.classList.add("iconify");
+        iShow.style.color = item.visible == 1 ? "green" : "red"; 
+        iShow.dataset.icon = item.visible == 1 ? "mdi-eye" : "mdi-eye-off-outline"
         
-        title.textContent = item.name
-        price.textContent = item.price
-        iDesc.textContent = item.description
+        stock.innerText = item.stock
+        title.innerText = item.name
+        iDesc.innerText = item.description
+        price.innerText = item.price.replace("\n", "");
         
-        image.src = `/assets/getImage.php?item=${item.id}`
+        image.src = `/assets/getImage.php?item=${item.id}&res=110`
+
+        shown.append(iShow)
         container.append(items)
         
       }
     )
   })
 
-
-function closeOverlay() {
-  const overlay = document.querySelector("#overlay")
-  overlay?.classList.add("hideOverlay")
-}
-
 document.body.addEventListener("click", e => {
-  if (e.target.matches("#additem, #additem *, .closeModal, .closeModal *")) {
+  if (e.target.matches("#additem, #additem *")) {
     const modal = document.querySelector("template#entry")
     const overlay = document.querySelector("#overlay")
     if (!overlay && !e.target.matches(".closeModal, .closeModal *")) {
@@ -64,7 +73,93 @@ document.body.addEventListener("click", e => {
     }
     closeOverlay()
   }
+
+  // Delete Item
+  if (e.target.matches("#delitem, #delitem *")) {
+    const selected = document.querySelectorAll(".sel > input:checked");
+    if (selected.length <= 0) {
+      popup("You must have at least one selection to do that", "warn")
+      return;
+    }
+    const overlay =  document.createElement("div")
+
+    overlay.id = "overlay";
+    overlay.innerHTML = `
+      <div id="deleteItem">
+          <h2>Delete Selected?</h2>
+          <div>
+            <button id="delConfirm" special-button color="red">Yes</button>
+            <button class="closeModal" color="green" special-button>No</button>
+          </div>
+      </div>
+    `
+    document.body.append(overlay)
+  }
+
+
+  // Edit Item
+  if (e.target.matches("#edititem, #edititem *")) {
+    const selected = document.querySelectorAll(".sel > input:checked")
+    if (selected.length != 1 ) {
+      popup("You must only have one selection to edit", "warn")
+      return;
+    }
+    const overlay = document.querySelector("#entryEdit").content.cloneNode(true)
+    const item_id = selected[0].id.split("item_", 2)[1];
+    const element = document.querySelector('[data-id="' + item_id + '"]');
+    const itemInf = JSON.parse(element.dataset.info);
+
+  
+    const name = overlay.querySelector("#name");
+    const desc = overlay.querySelector("#desc");
+    const cost = overlay.querySelector("#cost");
+    const amnt = overlay.querySelector("#amnt");
+    const show = overlay.querySelector("#show");
+    const jpeg = overlay.querySelector("label[for='jpeg']");
+    
+    name.value = itemInf.name;
+    amnt.value = itemInf.stock;
+    desc.value = itemInf.description;
+    show.checked = Boolean(itemInf.visible);
+    cost.value = itemInf.price.replace("$\n", "");
+    
+    jpeg.innerHTML = ""
+    overlay.querySelector("#editItem").dataset.id = itemInf.id;
+    jpeg.style.backgroundImage = `url(/assets/getImage.php?item=${itemInf.id})`;
+
+    document.body.append(overlay)
+
+  }
+
+  // Confirm Delete
+  if (e.target.matches("#delConfirm")) {
+    const selected = document.querySelectorAll(".sel > input:checked");
+    const array = [];
+    const dForm = new FormData()
+    selected.forEach( elem => array.push(elem.id.split("item_")[1]))
+  
+    dForm.append("method", "delete")
+    dForm.append("array", JSON.stringify(array))
+  
+    fetch("/api/itemHandler.php", {
+      method: "POST",
+      body: dForm
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success) {
+        popup(data.message, "warn")
+        return;
+      }
+      popup(data.message, "verbose")
+      array.forEach(id => {
+        document.querySelector(`[data-id="${id}"]`).remove();
+      })
+      closeOverlay();
+    })
+  }
 })
+
   
 document.body.addEventListener("change", e=> {
   if (e.target.matches("#selAll")) {
@@ -90,35 +185,97 @@ document.body.addEventListener("change", e=> {
 })
 
 document.body.addEventListener("submit", e => {
-  console.log("hello")
-  if (e.target.matches("#createItem")) {
+  if (e.target.matches("#createItem, #editItem")) {
     e.preventDefault()
 
-    const send = e.target.querySelector(".send")
-    const name = e.target.querySelector("#name")
-    const desc = e.target.querySelector("#desc")
-    const cost = e.target.querySelector("#cost")
-    const jpeg = e.target.querySelector("#jpeg")
-    const html = send.innerHTML
+    if (e.target.matches("#editItem")) {
+      process(e.target, e.target.dataset.id)
+      return;
+    }
+    process(e.target);
 
-    send.disabled = true
-    send.innerHTML = "Processing.."
-    console.log("hello")
+  }
+})
 
-    fetch("/api/itemHandler.php")
+function process(element, id) {
+
+  const send = element.querySelector(".send")
+  const name = element.querySelector("#name")
+  const desc = element.querySelector("#desc")
+  const cost = element.querySelector("#cost")
+  const jpeg = element.querySelector("#jpeg")
+  const amnt = element.querySelector("#amnt");
+  const show = element.querySelector("#show");
+  const img1 = new FileReader();
+  const form = new FormData();
+  const html = send.innerHTML
+  var result = null;
+  
+  send.disabled = true
+  send.innerHTML = "Processing.."
+  
+  const reset = () => {
+    send.innerHTML = html
+    send.disabled = false
+  }
+  
+  if (cost.value < 0 || cost.value > 1000000) {
+    popup("Item price must not be lower than 0 nor higher than 1000000");
+    reset();
+    return;
+  }
+  if (name.value.length > 100) {
+    popup("Item names can't be longer than 100 characters");
+    reset();
+    return;
+  }
+  if (desc.value.length > 2000) {
+    popup("Description can't be longer than 2000 characters");
+    reset();
+    return;
+  }
+
+  if (jpeg.files.length > 0) {
+    img1.onloadend = () => {
+      result = img1.result;
+      sendReq();
+    }
+    img1.readAsDataURL(jpeg.files[0])
+    return;
+  }
+  sendReq();
+
+  function sendReq() {
+    id ? form.append("id", id) : null;
+    form.append("jpeg", result)
+    form.append("name", name.value)
+    form.append("desc", desc.value)
+    form.append("cost", cost.value)
+    form.append("amnt", amnt.value)
+    form.append("show", show.checked ? 1 : 0)
+    form.append("method", element.matches("#createItem") ? "addItem" : "editItem")
+  
+    fetch("/api/itemHandler.php", {
+      method: "POST",
+      body: form
+    })
     .then(res => res.json())
+    .then(data => {
+      if (!data.success) {
+        popup(data.message, "warn")
+        reset();
+        return;
+      }
+      popup(data.message, "verbose");
+      setTimeout(function () {
+        location.reload();
+      }, 500)
+    })
     .catch(err => {
-      send.innerHTML = html
-      send.disabled = false
-      popup("An Error Occurred, please check the console for more details %c" + err, "error")
+      reset();
+      popup("An Error Occurred, please check the console for more details", "error")
+      throw err;
     })
   }
-})
-
-document.body.addEventListener("transitionend", e=> {
-  if (e.target.matches(".hideOverlay")) {
-    e.target.remove()
-  }
-})
-
+}
 

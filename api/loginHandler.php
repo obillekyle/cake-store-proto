@@ -2,6 +2,7 @@
 
 session_start();
 include "../_util/db.php";
+include "../_util/encrypt.php";
 include "../_util/response.php";
 
 $method = $_POST['method'] ?? false;
@@ -96,14 +97,5 @@ if (strtolower($method) === "register") {
   $_SESSION["role"] = $row['role'] ?? "Member";
   $_SESSION["u_id"] = $row['id'];
 
-  response(true, "Successfully registered! $pass");
-}
-
-function encrypt($data) {
-  include "../_util/getConfig.php";
-  $encrypt = $config['encrypt'];
-  error_reporting(0);
-  $enc = openssl_encrypt($data, 'aes-256-ctr', $encrypt["key"]);
-  error_reporting(1);
-  return $enc;
+  response(true, "Successfully registered!");
 }

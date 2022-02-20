@@ -1,0 +1,149 @@
+@import "./main.scss";
+
+.table {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--main-60);
+  overflow-x: auto;
+  min-height: 124px;
+  card, header {
+    display: grid;
+    padding: 0 8px;
+    width: 100%;
+    gap: 6px;
+    row-gap: 0;
+    min-width: 600px;
+    grid-template-columns: 24px 75px minmax(150px, 1fr) 75px 75px 75px 32px;
+  }                     // sel  pic   itemName          user amnt cost opts
+  .price, .quantity, .username {
+    margin-left: auto;
+  }
+  header {
+    min-height: 32px;
+    align-items: center;
+    background: var(--main-10);
+    border-bottom: 1px solid var(--main-60);
+    .selAll {
+      width: 24px;
+      height: 24px;
+      input:focus + label {
+        color: var(--outline);
+      }
+      label {
+        padding: 0;
+        min-width: 24px;
+        min-height: 24px;
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+      }
+    }
+    p {
+      margin: 0;
+    }
+
+  }
+  card {
+    min-height: 100px;
+    align-items: center;
+    &:nth-of-type(even) {
+      background: var(--shade);
+    }
+    &:focus {
+      box-shadow: 0 0 0 4px var(--outline, var(--main-60)) inset;
+    }
+    .fullName {
+      font-weight: bold;
+    }
+    .username {
+      box-shadow: 0 0 0 1px var(--main-80);
+    }
+    .sel, .drop {
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      input:focus + label {
+        color: var(--outline, var(--main-60));
+      }
+      label {
+        padding: 0;
+        min-width: 24px;
+        min-height: 24px;
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+      }
+    }
+    .profile {
+      object-fit: contain;
+      width: 75px;
+      height: 75px;
+    }
+  }
+  detail {
+    &:nth-of-type(even) { 
+      background: var(--shade);
+    }
+    min-height: 0px;
+    height: 0;
+    overflow: hidden;
+    display: flex;
+    min-width: 600px;
+    align-items: center;
+    width: 100%;
+    transition: height 0.2s;
+    padding: 0 16px;
+  }
+  .show {
+    height: 50px;
+  }
+  
+}
+
+actions {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 8px;
+  .button {
+    width: 96px;
+    overflow: hidden;
+  }
+  .search {
+    flex: 1 0 auto;
+  }
+  @media (max-width: 500px) {
+    .button{
+      padding: 0 8px;
+      width: 40px;
+      p {
+        display: none !important;
+      }
+    }
+  }
+}
+
+#overlay {
+  #confirm {
+    background-color: white;
+    border: 1px solid var(--main-60);
+    padding: 16px;
+    gap: 4px;
+    justify-content: center;
+    h2 {
+      margin: 0;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    p {
+      color: dimgray;
+      background: smoke;
+    }
+    div {
+      gap: 8px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

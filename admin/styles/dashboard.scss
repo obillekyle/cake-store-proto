@@ -1,0 +1,72 @@
+@import "./main.scss";
+
+#sales {
+  display: grid;
+  padding: 16px 0;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+  .info {
+    padding: 24px;
+    border-radius: 8px;
+    background: var(--disabled, whitesmoke);
+    color: var(--color, black);
+    display: flex;
+    gap: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    display: grid;
+    grid-template-areas: 
+      "info-title info-title"
+      "info-icon  info-value"
+    ;
+    .info-title, .info-value {
+      margin: 0;
+    }
+    .info-title {
+      grid-area: info-title;
+    }
+    .iconify {
+      grid-area: info-icon;
+      font-size: 48px;
+      transition: font-size 0.4s ease;
+    }
+    .info-value {
+      grid-area: info-value;
+      font-size: 48px;
+      align-self: flex-end;
+      margin: auto 0 0 auto;
+      line-height: 0.5;
+    }
+  }
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 1165px) {
+    .iconify {
+      font-size: 64px !important;
+    }
+  }
+}
+
+#chart-sales, #filterby {
+  --bg: var(--main-20);
+  --color: var(--main-80);
+  --outline: var(--main-60);
+  --disabled:  var(--main-10);
+  padding: 6px;
+  color: var(--outline);
+  background: var(--bg);
+  border: 1px solid var(--outline);
+  width: min-content;
+  label + & {
+    margin-left: 8px;
+  }
+  &:disabled {
+    background-color: var(--disabled);
+    border: 1px solid var(--bg);
+    color: gray;
+  }
+  option{
+    height: 32px;
+  } 
+}

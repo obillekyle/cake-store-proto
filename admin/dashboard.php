@@ -11,6 +11,7 @@
   <title><?= $title ?></title>
 
   <?= Scripts() ?>
+  <link rel="stylesheet" href="/admin/styles/dashboard.css">
   <script defer src="/admin/scripts/getDashData.js"></script>
 </head>
 <body>
@@ -24,24 +25,31 @@
     <p><?= $title ?> Sales</p>
     <select id="chart-sales">
       <option value="month">Last 30 days</option>
-      <option value="week">Last 30 weeks</option>
+      <option value="week">Last weeks</option>
       <option value="day">Last 24 hours</option>
-      <option value="year">Last 1 year</option>
+      <option value="year">Last year</option>
     </select>
     <div id="sales">
-      <orders class="info">
-        <span class="iconify" data-icon="mdi-shopping-outline"></span>
-        <p class="info-title">Total Orders</p>
-        <p class="info-value">...</p>
-      </orders>
-
+      
       <cartitems class="info">
         <span class="iconify" data-icon="mdi-cart-check"></span>
         <p class="info-title">Items in Users' Cart</p>
         <p class="info-value">...</p>
       </cartitems>
 
-      <earnings class="info">
+      <pending class="info" color="red">
+        <span class="iconify" data-icon="mdi-update"></span>
+        <p class="info-title">Pending orders</p>
+        <p class="info-value">...</p>
+      </pending>
+      
+      <orders class="info" color="cyan">
+        <span class="iconify" data-icon="mdi-shopping-outline"></span>
+        <p class="info-title">Total Orders</p>
+        <p class="info-value">...</p>
+      </orders>
+
+      <earnings class="info" color="yellow">
         <span class="iconify" data-icon="mdi-cash-multiple"></span>
         <p class="info-title">Total Earnings</p>
         <p class="info-value">...</p>

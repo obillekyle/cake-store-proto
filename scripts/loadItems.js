@@ -13,9 +13,13 @@ for (let i = 0; i < 10; i++) {
 fetch("/api/getItems.php")
   .then(res => res.json())
   .then(data => {
-    data.forEach( 
+    if (!data.success) {
+      popup(data.message, "warn")
+      return;
+    }
+    container.querySelectorAll(".skeleton").forEach(e => e.remove())
+    data.items.forEach( 
       item => {
-        container.innerHTML = ''
 
         const items = document.querySelector("#items").content.cloneNode(true)
         const iCard = items.querySelector(".card")
@@ -28,16 +32,17 @@ fetch("/api/getItems.php")
         var add = () => addCart(item.id) 
         iCard.setAttribute("data-id", item.id)
         aCart.onclick = add
+        iDesc.innerText = item.description
         title.textContent = item.name
         price.textContent = "$" + item.price
-        iDesc.textContent = item.description
 
-        image.src = `/assets/getImage.php?item=${item.id}`
+        image.src = `/assets/getImage.php?item=${item.id}&res=300`
         container.append(items)
         
       }
     )
   }).catch(err => {
+    console.log(err)
     popup("Server not Available, Please reload the page", "error")
   })
   

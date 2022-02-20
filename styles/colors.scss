@@ -1,24 +1,25 @@
 
-$main: gold;
+$main: #00bbff;
 $accent: #19FFD1;
-$primary: #000000;
-$secondary: #FFFFFF;
+$secondary: #fff;
+$primary: #111;
+$shade: rgba(128, 128, 128, 0.1);
 
 
 :root {
-  --main-10: #{lighten($main, 40%)};
-  --main-20: #{lighten($main, 30%)};
-  --main-30: #{lighten($main, 20%)};
-  --main-40: #{lighten($main, 10%)};
+  --main-10: #{mix(lighten($main, 40%),$secondary, 30%)};
+  --main-20: #{mix(lighten($main, 30%),$secondary, 30%)};
+  --main-30: #{mix(lighten($main, 20%),$secondary, 30%)};
+  --main-40: #{mix(lighten($main, 10%),$secondary, 30%)};
   --main-50: #{$main};
   --main-60: #{darken($main, 10%)};
   --main-70: #{darken($main, 20%)};
   --main-80: #{darken($main, 30%)};
   --main-90: #{darken($main, 40%)};
-  --accent-10: #{lighten($accent, 40%)};
-  --accent-20: #{lighten($accent, 30%)};
-  --accent-30: #{lighten($accent, 20%)};
-  --accent-40: #{lighten($accent, 10%)};
+  --accent-10: #{rgba($accent, .2)};
+  --accent-20: #{rgba($accent, .4)};
+  --accent-30: #{rgba($accent, .6)};
+  --accent-40: #{rgba($accent, .8)};
   --accent-50: #{$accent};
   --accent-60: #{darken($accent, 10%)};
   --accent-70: #{darken($accent, 20%)};
@@ -26,6 +27,15 @@ $secondary: #FFFFFF;
   --accent-90: #{darken($accent, 40%)};
   --primary: #{$primary};
   --secondary: #{$secondary};
+  --shade: #{$shade};
+}
+
+[color="main"] {
+  --bg: var(--main-20) !important;
+  --color: var(--main-80) !important;
+  --outline: var(--main-60) !important;
+  --disabled:  var(--main-10) !important;
+
 }
 
 [color="yellow"] {

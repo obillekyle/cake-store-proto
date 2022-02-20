@@ -1,0 +1,164 @@
+@import "./main.scss";
+
+#container {
+  gap: 12px;
+  display: grid;
+  min-height: 50px;
+  padding: 50px 16px 16px 16px;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, 325px);
+  width: 100%;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    gap: 0px;
+  }
+}
+
+.card {
+  // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: grid;
+  padding: 12.5px;
+  grid-template-areas: 
+      "image"
+      "aCart"
+      "title"
+      "iDesc"
+      "price"
+  ;
+  transition: box-shadow 0.4s, transform 0.2s !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 0 5px var(--main-50);
+  }
+  &.skeleton {
+    box-shadow: none;
+    transform: none;
+  }
+  align-items: center;
+  grid-template-columns: 300px;
+  grid-template-rows: 185px 40px 35px 40px;
+  .skeleton {
+    background: gainsboro;
+    opacity: 0.9;
+    border-radius: 4px;
+    animation: skeleton 1.5s alternate infinite linear;
+    margin: 0 auto;
+  }
+  .image {
+    grid-area: image;
+    width: 300px;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    object-position: center;
+    background-color: gainsboro;
+    border: 1px solid gainsboro;
+    &.skeleton {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px 4px 0px 0px;
+    }
+  }
+  .addcart {
+    gap: 12px;
+    height: 100%;
+    display: flex;
+    grid-area: aCart;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-80);
+    background-color: var(--main-50);
+    &:hover {
+      cursor: pointer;
+      filter: brightness(0.8);
+    }
+    .text {
+      margin: 0;
+      margin-top: 5px;
+      font-weight: 700;
+    }
+    &.skeleton {
+      cursor: default;
+      filter: none;
+      width: 100%;
+      border-radius: 0 0 4px 4px;
+      background-color: var(--main-20);
+    }
+  }
+  .name {
+    grid-area: title;
+    font-weight: 600;
+    letter-spacing: 1px;
+    align-self: end;
+    text-align: center;
+    &.skeleton {
+      height: 18px;
+    }
+  }
+  .price {
+    grid-area: price;
+    border-radius: 0px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--main-80);
+    &.skeleton {
+      color: transparent;
+    }
+  }
+  .description  {
+    grid-area: iDesc;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-clamp: 2;
+    box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    &.skeleton {
+      min-height: 14px;
+    }  
+  }
+  .stock {
+    grid-area: stock;
+  }
+  @media (max-width: 700px) {
+    grid-template-areas: 
+      "image title price"
+      "image iDesc aCart"
+    ;
+    grid-template-columns: 100px 1fr 60px;
+    grid-template-rows: 32px 68px;
+    .name, .description {
+      text-align: start;
+      margin: 0;
+      margin-left: 8px;
+    }
+    & + & {
+      border-top: 1px solid gainsboro;
+    }
+    .price {
+      margin: 0;
+      margin-left: auto;
+      text-align: end;
+    }
+    .image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+    .addcart {
+      margin-left: 12px;
+      width: 48px;
+      height: 48px;
+      &.skeleton {
+        width: 48px;
+      }
+    }
+    .text {
+      display: none;
+    }
+  }
+}

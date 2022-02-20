@@ -1,4 +1,3 @@
-var start = performance.now()
 let login = false
 
 // Check if there is user signed in
@@ -72,7 +71,8 @@ function getDropdown() {
     const icon = document.createElement("span")
     const name = document.createElement("p")
 
-    item.tabIndex = "0"
+    item.tabIndex = "3"
+
     item.onclick = clickFn
     icon.className = "iconify"
     item.className = "optioncard"
@@ -88,4 +88,3 @@ function getDropdown() {
   document.body.insertBefore(dropdown, nav.nextSibling)
 }
 
-perf("Loaded loginscreen.js", start)

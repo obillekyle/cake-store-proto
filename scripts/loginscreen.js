@@ -59,7 +59,10 @@ function getDropdown(role) {
       name: "Logout",
       clickFn: () => {
         fetch("/api/loginHandler.php?logout=true")
-            .then(setTimeout(_ => checkLogin(), 100))
+          .then(setTimeout(_ => checkLogin(), 100))
+          .catch(e => {
+            popup("Server is not available", "warn")
+          })
       },
       icon: "mdi-logout-variant",
     },
@@ -96,7 +99,7 @@ function getDropdown(role) {
     const icon = document.createElement("span")
     const name = document.createElement("p")
 
-    item.tabIndex = "0"
+    item.tabIndex = "6"
     item.onclick = clickFn
     icon.className = "iconify"
     item.className = "optioncard"
@@ -120,13 +123,13 @@ const loginscreen = `
     <label for="l-password">Password</label>
     <input type="password" id="l-password" min="6" max="128" required/>
     <button type="submit" special-button name="submit">Login</button>
-    <label class="reg" tabindex="0" onclick="register()">Register Instead</label>
+    <label class="reg" tabindex="6" onclick="register()">Register Instead</label>
   </form>
 `
 
 const registerscreen = `
   <form id="register">
-    <label id="fullname">Full name</label>
+    <label for="fullname">Full name</label>
     <input id="fullname" type="text" min="3" max="100" required/>
 
     <label for="username">Username</label>
@@ -143,7 +146,7 @@ const registerscreen = `
     <input type="password" id="confpass" min="6" max="128" required/>
 
     <button type="submit" special-button data-disabled="true" disabled name="submit">Register</button>
-    <label class="login" tabindex="0" onclick="switchlogin()">Go back to Login</label>
+    <label class="login" tabindex="6" onclick="switchlogin()">Go back to Login</label>
 
   </form>
 `

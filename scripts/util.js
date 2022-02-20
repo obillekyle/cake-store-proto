@@ -27,7 +27,6 @@ function popup(message, level) {
   mPopup.addEventListener("animationend", _ => {
     _?.target.remove()
   }) 
-  
 }
 
 function random(min, max) {
@@ -50,12 +49,32 @@ function perf(label, number) {
   console.log(label + ": %c" + ms + "ms", "color: "+ color)
 }
 
+function animateValue(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.innerHTML = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+function closeOverlay() {
+  const overlay = document.querySelector("#overlay")
+  overlay?.classList.add("hideOverlay")
+}
+
+// Events
+// Keyboard events
 document.addEventListener("keyup", e => {
   if (e.target.disabled || e.target.dataset.disabled) return
   if (e.key === "Enter" && e.target.matches(":focus")) {
     e.target.click()
     e.target.dataset.disabled = true
-    e.target.style.boxShadow = "0 0 0 2px var(--main-80)"
+    e.target.style.boxShadow = "0 0 0 2px var(--main-80) inset"
     setTimeout(_ => {
       delete e.target.dataset.disabled
       e.target.style.boxShadow = ""
@@ -92,19 +111,46 @@ document.addEventListener("keyup", e => {
   }
 })
 
+function outline(target) {
+  target.dataset.disabled = true
+  target.style.boxShadow = "0 0 0 2px var(--main-80) inset"
+  setTimeout(_ => {
+    delete target.dataset.disabled
+    target.style.boxShadow = ""
+  },200)
+}
 
+// Click Events
 document.addEventListener("click", e => {
-  if (e.target.matches(":focus:not(input)")) {
-    e.target.dataset.disabled = true
-    e.target.style.boxShadow = "0 0 0 2px var(--main-80)"
-    setTimeout(_ => {
-      delete e.target.dataset.disabled
-      e.target.style.boxShadow = ""
-    },200)
+  // Outline Events
+  if (e.target.matches(":focus, [tabindex]")) outline(e.target);
+  if (e.target.matches(":focus *, [tabindex] *")) {
+    if (e.target.matches(".checkbox *")) return;
+    const recursive = elem => {
+      if (elem.matches(":focus, [tabindex]")) return elem;
+      console.log(elem)
+      return recursive(elem.parentElement); 
+    }
+    const target = recursive(e.target);
+    if (!target || target.onclick) return;
+
+    target.click();
+    outline(target);
+  }
+  if (e.target.matches(".closeModal, .closeModal > *")) {
+    closeOverlay();
+  }
+  if (e.target.matches(".button, .button > *")) {
+    const recursive = elem => {
+      if (elem.matches(".button")) return elem;
+      return recursive(elem.parentElement); 
+    }
+    const button = recursive(e.target)
   }
 })
 
 
+// Form Submit
 document.addEventListener("submit", e => {
 
   // Login Handler
@@ -112,7 +158,6 @@ document.addEventListener("submit", e => {
     e.preventDefault()
     const user = e.target.querySelector("#l-username")
     const pass = e.target.querySelector("#l-password")
-    console.log(user.value, pass.value)
     const form = new FormData()
 
     form.append("method", "login")
@@ -155,8 +200,6 @@ document.addEventListener("submit", e => {
       return
     }
 
-    console.log(name.value)
-
     form.append("user", user.value)
     form.append("pass", pass.value)
     form.append("conf", conf.value)
@@ -179,5 +222,49 @@ document.addEventListener("submit", e => {
     }).catch(err => {
       popup("An Error Occurred - Register", "error")
     })
+  }
+})
+
+// Keyboard Events
+document.body.addEventListener("keyup", e => {
+  if (e.target.matches("[index]")) {
+
+    const index = parseInt(e.target.getAttribute("index"));
+
+    if (e.key === "ArrowUp") {
+      const elem = e.target.parentElement
+                    .querySelector("[index='"+ (index - 1) +"']");
+      if (!elem) return;
+      e.preventDefault();
+      elem.focus();
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      const elem = e.target.parentElement
+                    .querySelector("[index='"+ (index + 1) +"']");
+      if (!elem) return;
+      e.preventDefault();
+      elem.focus();
+      return;
+    }
+  }
+})
+
+// Transition Events
+document.body.addEventListener("transitionend", e=> {
+  if (e.target.matches(".hideOverlay")) {
+    e.target.remove()
+  }
+})
+
+document.body.addEventListener("change", e => {
+  if (e.target.matches(".selAll > input")) {
+    const checked = e.target.checked;
+    document.querySelectorAll(".sel > input").forEach( input => {
+      input.checked = checked;
+    })
+  }
+  if (e.target.matches(".sel > input")) {
+    document.querySelector(".selAll > input").checked = false;
   }
 })
