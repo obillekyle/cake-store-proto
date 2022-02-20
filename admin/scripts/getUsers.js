@@ -27,8 +27,8 @@ function build(data) {
     user.innerText = item.username ?? "??"
     info.innerText = `
       Account Created: ${item.accountcreation}\n 
-      LastLogin: ${item.lastlogin?.length < 1 ? "Same as Account Creation" : item.lastlogin}\n
-      IP Address: ${item.ip.replace("::1", "127.0.0.1")} | Proxy: ${item.proxy_ip}
+      LastLogin: ${!item.lastlogin ? item.accountcreation : item.lastlogin}\n
+      IP Address: ${item.ip.replace("::1", "127.0.0.1")} | Proxy: ${item.proxy_ip.length < 1 ? "none" : item.proxy_ip}
     `
 
     main.dataset.id = item.id ?? "??"
