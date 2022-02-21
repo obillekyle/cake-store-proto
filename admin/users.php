@@ -1,5 +1,5 @@
 <?php
-  include "addons.php";
+  include "../_util/addons.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,8 @@
   <title><?= $title ?></title>
 
   <?= Scripts() ?>  
+  <script defer src="/admin/scripts/main.js"></script>
+    <script defer src="/admin/scripts/sidebar.js"></script>
   <script defer src="/admin/scripts/getUsers.js"></script>
   <link rel="stylesheet" href="/admin/styles/users.css">
 </head>

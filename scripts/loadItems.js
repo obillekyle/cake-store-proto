@@ -17,7 +17,7 @@ fetch("/api/getItems.php")
       popup(data.message, "warn")
       return;
     }
-    container.querySelectorAll(".skeleton").forEach(e => e.remove())
+    container.querySelectorAll(".skeleton").remove();
     data.items.forEach( 
       item => {
 

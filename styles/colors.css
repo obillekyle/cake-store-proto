@@ -1,13 +1,13 @@
 :root {
-  --main-10: #f0fbff;
-  --main-20: #e0f7ff;
-  --main-30: #d1f3ff;
-  --main-40: #c2efff;
-  --main-50: #00bbff;
-  --main-60: #0096cc;
-  --main-70: #007099;
-  --main-80: #004b66;
-  --main-90: #002533;
+  --main-10: #fff8eb;
+  --main-20: #fff1d6;
+  --main-30: #ffe9c2;
+  --main-40: #ffe2ad;
+  --main-50: orange;
+  --main-60: #cc8400;
+  --main-70: #996300;
+  --main-80: #664200;
+  --main-90: #332100;
   --accent-10: rgba(25, 255, 209, 0.2);
   --accent-20: rgba(25, 255, 209, 0.4);
   --accent-30: rgba(25, 255, 209, 0.6);

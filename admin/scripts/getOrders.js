@@ -17,9 +17,7 @@ function build(data) {
     popup(data.message, "warn")
     return;
   }
-  document.querySelectorAll("card").forEach( e => {
-    e.remove();
-  })
+  document.querySelectorAll("card").remove()
   data.items.forEach((item, i) => {
     const container = document.querySelector(".table")
     const card = document.querySelector("#card").content.cloneNode(true)

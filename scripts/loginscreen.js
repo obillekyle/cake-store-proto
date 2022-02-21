@@ -18,20 +18,20 @@ function checkLogin() {
         return
       }
 
-      const name = pHolder.querySelector("p")
-      const pImg = document.createElement("img")
+      const name = pHolder.querySelector("p");
+      const pImg = pHolder.querySelector("img");
       pImg.src = `/assets/getProfile.php?user=${data.u_id}`
       name.textContent = data.user
 
-      console.log(data.user)
       const dropdown = () => {
         getDropdown(data.role)
       }
-      pHolder.append(pImg)
+
       pHolder.onclick = dropdown
       login = true
     }).catch(err => {
       popup("Error occurred whilst contacting the server", "error")
+      throw err;
     })
 }
   

@@ -1,5 +1,5 @@
 
-$main: #00bbff;
+$main: orange;
 $accent: #19FFD1;
 $secondary: #fff;
 $primary: #111;
@@ -7,10 +7,10 @@ $shade: rgba(128, 128, 128, 0.1);
 
 
 :root {
-  --main-10: #{mix(lighten($main, 40%),$secondary, 30%)};
-  --main-20: #{mix(lighten($main, 30%),$secondary, 30%)};
-  --main-30: #{mix(lighten($main, 20%),$secondary, 30%)};
-  --main-40: #{mix(lighten($main, 10%),$secondary, 30%)};
+  --main-10: #{mix(lighten($main, 40%),$secondary, 40%)};
+  --main-20: #{mix(lighten($main, 30%),$secondary, 40%)};
+  --main-30: #{mix(lighten($main, 20%),$secondary, 40%)};
+  --main-40: #{mix(lighten($main, 10%),$secondary, 40%)};
   --main-50: #{$main};
   --main-60: #{darken($main, 10%)};
   --main-70: #{darken($main, 20%)};

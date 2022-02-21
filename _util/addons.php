@@ -2,8 +2,8 @@
 
 session_start();
 error_reporting(0);
-include "../_util/db.php";
-include "../_util/getConfig.php";
+include "./_util/db.php";
+include "./_util/getConfig.php";
 
 $site = $config["site"];
 $title = $site["title"];
@@ -26,8 +26,6 @@ function Scripts() {
 
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <script defer src="/scripts/util.js"></script>
-    <script defer src="/admin/scripts/main.js"></script>
-    <script defer src="/admin/scripts/sidebar.js"></script>
   <?php
 }
 

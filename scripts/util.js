@@ -1,5 +1,34 @@
-function popup(message, level) {
+Element.prototype.parentMatches = function(sel, deep) {
+  if (!sel) return this.parentElement;
+  if (deep < 1 || deep === true) deep = 10;
 
+  const recursive = (elem, sel, num) => {
+    if (!elem || num > deep) return undefined;
+    if (elem.matches(sel)) return elem;
+    return recursive(elem.parentElement, sel, num + 1);
+  }
+  return recursive(this.parentElement, sel, 0);
+}
+
+Element.prototype.animateValue = function(start, end, duration) {
+  let startTimestamp = null;
+  const step = timestamp => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    this.innerHTML = Math.floor(progress * (end - start) + start);
+    if (progress < 1) window.requestAnimationFrame(step);
+  };
+  window.requestAnimationFrame(step);
+}
+
+NodeList.prototype.remove = function() {
+  for (let i = 0; i < this.length; i++) {
+    this[i].remove();
+  }
+}
+
+
+function popup(message, level) {
   const popups = document.querySelector('#popups')
   const mPopup = document.createElement("div")
   const button = document.createElement("button")
@@ -47,19 +76,6 @@ function perf(label, number) {
   if (ms < 30)    color = "green"
   
   console.log(label + ": %c" + ms + "ms", "color: "+ color)
-}
-
-function animateValue(obj, start, end, duration) {
-  let startTimestamp = null;
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    obj.innerHTML = Math.floor(progress * (end - start) + start);
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
-  };
-  window.requestAnimationFrame(step);
 }
 
 function closeOverlay() {
@@ -112,7 +128,7 @@ document.addEventListener("keyup", e => {
 
 function outline(target) {
   target.dataset.disabled = true
-  target.style.boxShadow = "0 0 0 2px var(--main-80) inset"
+  target.style.boxShadow = "0 0 0 2px var(--outline, var(--main-80)) inset"
   setTimeout(_ => {
     delete target.dataset.disabled
     target.style.boxShadow = ""
@@ -122,28 +138,31 @@ function outline(target) {
 // Click Events
 document.addEventListener("click", e => {
   // Outline Events
-  if (e.target.matches(":focus, [tabindex]")) outline(e.target);
+  if (e.target.matches(":focus")) outline(e.target);
   if (e.target.matches(":focus *, [tabindex] *")) {
     if (e.target.matches(".checkbox *")) return;
-    const recursive = elem => {
-      if (elem.matches(":focus, [tabindex]")) return elem;
-      return recursive(elem.parentElement); 
-    }
-    const target = recursive(e.target);
+    let target = e.target.parentMatches(":focus");
     if (!target || target.onclick) return;
-
     target.click();
     outline(target);
   }
   if (e.target.matches(".closeModal, .closeModal > *")) {
     closeOverlay();
   }
-  if (e.target.matches(".button, .button > *")) {
-    const recursive = elem => {
-      if (elem.matches(".button")) return elem;
-      return recursive(elem.parentElement); 
-    }
-    const button = recursive(e.target)
+})
+
+document.addEventListener("click", e => {
+  if (e.target.matches(".sub, .add")) {
+    if (e.target.disabled) return;
+    const input = e.target.parentElement.querySelector("input")
+    const value = e.target.matches(".sub") ? input.value - 1 : parseInt(input.value) + 1
+
+    if (value < 1 || value > 100) {
+      input.value = 1;
+      return;
+    };
+    input.value = value;
+
   }
 })
 

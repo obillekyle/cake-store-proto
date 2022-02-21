@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Redressed:regular");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic");
 :root {
-  --main-10: #f0fbff;
-  --main-20: #e0f7ff;
-  --main-30: #d1f3ff;
-  --main-40: #c2efff;
-  --main-50: #00bbff;
-  --main-60: #0096cc;
-  --main-70: #007099;
-  --main-80: #004b66;
-  --main-90: #002533;
+  --main-10: #fff8eb;
+  --main-20: #fff1d6;
+  --main-30: #ffe9c2;
+  --main-40: #ffe2ad;
+  --main-50: orange;
+  --main-60: #cc8400;
+  --main-70: #996300;
+  --main-80: #664200;
+  --main-90: #332100;
   --accent-10: rgba(25, 255, 209, 0.2);
   --accent-20: rgba(25, 255, 209, 0.4);
   --accent-30: rgba(25, 255, 209, 0.6);
@@ -100,6 +100,19 @@ body {
           box-sizing: border-box;
 }
 
+main {
+  margin-left: 48px;
+  padding: 16px;
+  -webkit-transition: padding-left 0.5s, padding-right 0.5s;
+  transition: padding-left 0.5s, padding-right 0.5s;
+}
+
+@media (max-width: 500px) {
+  main {
+    padding: 16px 8px;
+  }
+}
+
 :focus {
   outline: none;
   -webkit-box-shadow: 0 0 0 4px var(--outline, var(--main-60)) inset;
@@ -127,7 +140,7 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-[tabindex="0"]:not(.button), button, a {
+[tabindex="0"]:not(.button, .card), button, a {
   -webkit-transition: -webkit-box-shadow 0.4s !important;
   transition: -webkit-box-shadow 0.4s !important;
   transition: box-shadow 0.4s !important;
@@ -221,6 +234,10 @@ label + input[type="file"] {
   margin: 0;
   margin-top: 2px;
   font-weight: 500;
+}
+
+.hide {
+  display: none !important;
 }
 
 [special-button] {
@@ -567,7 +584,7 @@ label + input[type="file"] {
 }
 
 .sidebar.compact .sideitem p {
-  opacity: 0;
+  display: none;
 }
 
 .compact {
@@ -619,12 +636,12 @@ label + input[type="file"] {
 
 @-webkit-keyframes popup {
   5% {
-    opacity: 1;
+    opacity: 0.9;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
   90% {
-    opacity: 1;
+    opacity: 0.9;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
@@ -632,12 +649,12 @@ label + input[type="file"] {
 
 @keyframes popup {
   5% {
-    opacity: 1;
+    opacity: 0.9;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
   90% {
-    opacity: 1;
+    opacity: 0.9;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
@@ -896,19 +913,6 @@ form.search button .loading {
   100% {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
-  }
-}
-
-main {
-  margin-left: 48px;
-  padding: 16px;
-  -webkit-transition: padding-left 0.5s, padding-right 0.5s;
-  transition: padding-left 0.5s, padding-right 0.5s;
-}
-
-@media (max-width: 500px) {
-  main {
-    padding: 16px 8px;
   }
 }
 /*# sourceMappingURL=main.css.map */

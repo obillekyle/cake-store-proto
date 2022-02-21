@@ -27,6 +27,14 @@ body {
   box-sizing: border-box;
 }
 
+main {
+  margin-left: 48px;
+  padding: 16px;
+  transition: padding-left 0.5s, padding-right 0.5s;
+  @media (max-width: 500px) {
+    padding: 16px 8px;
+  }
+}
 
 // Focus Styles
 :focus {
@@ -51,7 +59,7 @@ select:-webkit-autofill:focus {
 }
 
 
-[tabindex="0"]:not(.button), button, a  {
+[tabindex="0"]:not(.button, .card), button, a  {
   transition: box-shadow 0.4s !important;
   user-select: none;
 }
@@ -121,6 +129,9 @@ label + input[type="file"] {
   }
 }
 
+.hide {
+  display: none !important;
+}
 [special-button] {
   --bg: var(--main-20);
   --color: var(--primary);
@@ -381,7 +392,7 @@ label + input[type="file"] {
   &.compact .sideitem {
     font-variation-settings: "TIME" 1;
     p {
-      opacity: 0;
+      display: none;
     }
   }
 }
@@ -421,11 +432,11 @@ label + input[type="file"] {
 
 @keyframes popup {
   5% {
-    opacity: 1;
+    opacity: 0.9;
     transform: translateX(0);
   }
   90% {
-    opacity: 1;
+    opacity: 0.9;
     transform: translateX(0);
   }
 }

@@ -33,8 +33,8 @@ function loadData() {
         return
       }
       const final = data.message.split("|")
-      animateValue(value, 0, final[0], 1000)
-      animateValue(price, 0, final[1], 1000)
+      value.animateValue( 0, final[0], 1000)
+      price.animateValue( 0, final[1], 1000)
 
     }).catch(err => {
       popup("An Error Occurred, please check the console for more details", "error")
@@ -49,7 +49,7 @@ function loadData() {
         popup(data.message, "warn")
         return
       }
-      animateValue(items, 0, data.message, 1000)
+      items.animateValue( 0, data.message, 1000)
     }).catch(err => {
       popup("An Error Occurred, please check the console for more details", "error")
       throw err;
@@ -62,7 +62,7 @@ function loadData() {
         popup(data.message, "warn")
         return
       }
-      animateValue(oPend, 0, data.message, 1000)
+      oPend.animateValue( 0, data.message, 1000)
     }).catch(err => {
       popup("An Error Occurred, please check the console for more details", "error")
       throw err;

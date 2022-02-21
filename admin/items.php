@@ -1,5 +1,5 @@
 <?php
-  include "addons.php";
+  include "../_util/addons.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $title ?></title>
   <?= Scripts() ?>
+  <script defer src="/admin/scripts/main.js"></script>
+  <script defer src="/admin/scripts/sidebar.js"></script>
   <link rel="stylesheet" href="/admin/styles/items.css">
   <script defer src="/admin/scripts/getDataItems.js"></script>
 </head>

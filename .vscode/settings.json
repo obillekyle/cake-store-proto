@@ -22,7 +22,9 @@
     "styles/home.css.map": true,
     "styles/home.css": true,
     "admin/styles/users.css": true,
-    "admin/styles/users.css.map": true
+    "admin/styles/users.css.map": true,
+    "styles/cart.css.map": true,
+    "styles/cart.css": true
   },
   "hide-files.files": [
     "styles/main.css.map",
@@ -41,7 +43,9 @@
     "styles/home.css.map",
     "styles/home.css",
     "admin/styles/users.css",
-    "admin/styles/users.css.map"
+    "admin/styles/users.css.map",
+    "styles/cart.css.map",
+    "styles/cart.css"
   ],
   "cSpell.words": [
     "acon",
