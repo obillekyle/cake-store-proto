@@ -331,7 +331,8 @@ function showSuccess() {
   overlay.innerHTML = `
     <div class="#confirm">
       <h2>Order Placed Successfully</h2>
-
+      <p>We will update you by calling your phone number</p>
+      <button onclick="closeOverlay()">OK</button
     </div>
   `
 }
