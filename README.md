@@ -11,9 +11,10 @@
   🔒 Built with security in mind\
   &nbsp;
 
-
-  # **Guides to survive my code**
+  # Requirements 
+  * PHP 7.4 or later
+  * Apache Server
+  * MySQL Server
+  * phpMyAdmin
 
   ### **Addons - addons.php**
-
-  * 

@@ -34,18 +34,14 @@
         <span class="iconify" data-icon="mdi-trash-can-outline"></span>
         <p>Delete</p>
       </label>
-      <label class="button deny" color="green" tabindex="0">
-        <span class="iconify" data-icon="mdi-check"></span>
-        <p>Order</p>
-      </label>
     </actions>
     <div class="table">
       <!-- Items -->
     </div>
   </main>
   <footer>
-    <label>Total: $<n>0</n></label>
-    <button outline-button color="main">Checkout</button>
+    <label>Total: ₱<n>0</n></label>
+    <button outline-button class="check" color="main">Checkout</button>
   </footer>
   
   <template id="card">

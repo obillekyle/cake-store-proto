@@ -407,7 +407,7 @@ label + input[type="file"] {
   display: flex;
   width: 300px;
   max-width: calc(100% - 32px);
-  position: absolute;
+  position: fixed;
   flex-direction: column;
   inset: auto 16px 16px auto; 
   z-index: 9999;
@@ -511,7 +511,7 @@ label + input[type="file"] {
 }
 
 .loginModal, .dropdown {
-  position: absolute;
+  position: fixed;
   inset: 75px 16px auto auto;
   width: 300px; 
   max-width: calc(100% - 32px);
@@ -584,6 +584,27 @@ form.search {
     animation-delay: 150ms;
     animation: childAnimation 0.1s reverse;
   }
+  #confirm {
+    background: white;
+    border: 1px solid var(--main-60);
+    padding: 16px;
+    gap: 4px;
+    justify-content: center;
+    h2 {
+      margin: 0;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    p {
+      color: dimgray;
+      background: smoke;
+    }
+    div {
+      gap: 8px;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 
@@ -611,3 +632,8 @@ form.search {
   }
 }
 
+@media (max-width: 450px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

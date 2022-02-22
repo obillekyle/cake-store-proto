@@ -24,7 +24,25 @@
     "admin/styles/users.css": true,
     "admin/styles/users.css.map": true,
     "styles/cart.css.map": true,
-    "styles/cart.css": true
+    "styles/cart.css": true,
+    "styles/colors.min.css": true,
+    "styles/colors.min.css.map": true,
+    "styles/home.min.css": true,
+    "styles/home.min.css.map": true,
+    "styles/main.min.css": true,
+    "styles/main.min.css.map": true,
+    "styles/cart.min.css": true,
+    "styles/cart.min.css.map": true,
+    "admin/styles/users.min.css": true,
+    "admin/styles/dashboard.min.css.map": true,
+    "admin/styles/dashboard.min.css": true,
+    "admin/styles/items.min.css": true,
+    "admin/styles/items.min.css.map": true,
+    "admin/styles/main.min.css": true,
+    "admin/styles/main.min.css.map": true,
+    "admin/styles/orders.min.css": true,
+    "admin/styles/orders.min.css.map": true,
+    "admin/styles/users.min.css.map": true
   },
   "hide-files.files": [
     "styles/main.css.map",
@@ -45,7 +63,25 @@
     "admin/styles/users.css",
     "admin/styles/users.css.map",
     "styles/cart.css.map",
-    "styles/cart.css"
+    "styles/cart.css",
+    "styles/colors.min.css",
+    "styles/colors.min.css.map",
+    "styles/home.min.css",
+    "styles/home.min.css.map",
+    "styles/main.min.css",
+    "styles/main.min.css.map",
+    "styles/cart.min.css",
+    "styles/cart.min.css.map",
+    "admin/styles/users.min.css",
+    "admin/styles/dashboard.min.css.map",
+    "admin/styles/dashboard.min.css",
+    "admin/styles/items.min.css",
+    "admin/styles/items.min.css.map",
+    "admin/styles/main.min.css",
+    "admin/styles/main.min.css.map",
+    "admin/styles/orders.min.css",
+    "admin/styles/orders.min.css.map",
+    "admin/styles/users.min.css.map"
   ],
   "cSpell.words": [
     "acon",
@@ -76,5 +112,21 @@
     "switchlogin",
     "tabindex",
     "usermail"
-  ]
+  ],
+  "liveSassCompile.settings.formats": [
+    {
+        "format": "expanded",
+        "extensionName": ".css",
+        "savePath": null,
+        "savePathSegmentKeys": null,
+        "savePathReplaceSegmentsWith": null
+    }, 
+    {
+        "format": "compressed",
+        "extensionName": ".min.css",
+        "savePath": null,
+        "savePathSegmentKeys": null,
+        "savePathReplaceSegmentsWith": null
+    }
+]
 }

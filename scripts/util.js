@@ -8,7 +8,7 @@ Element.prototype.parentMatches = function(sel, deep) {
     return recursive(elem.parentElement, sel, num + 1);
   }
   return recursive(this.parentElement, sel, 0);
-}
+},
 
 Element.prototype.animateValue = function(start, end, duration) {
   let startTimestamp = null;
@@ -20,6 +20,11 @@ Element.prototype.animateValue = function(start, end, duration) {
   };
   window.requestAnimationFrame(step);
 }
+
+
+NodeList.prototype.toArray = function() {
+  return [...this];
+},
 
 NodeList.prototype.remove = function() {
   for (let i = 0; i < this.length; i++) {
@@ -44,11 +49,11 @@ function popup(message, level) {
   button.onclick = remove
   mPopup.append(button)
 
-  if (!message) throw new Error("Internal Error Occurred")
-  if (!level || level === "info")  bColor = "gray"
-  if (level === "warn")            bColor = "orange"
-  if (level === "verbose")         bColor = "green"
-  if (level === "error")           bColor = "red"
+  if (!message) console.warn("Message is %cnull", "color: cyan");
+  if (level === "info")     bColor = "gray"
+  if (level === "warn")     bColor = "orange"
+  if (level === "verbose")  bColor = "green"
+  if (level === "error")    bColor = "red"
 
   mPopup.style.boxShadow = "-6px 0 0 " + bColor
   popups.append(mPopup)
@@ -158,7 +163,7 @@ document.addEventListener("click", e => {
     const value = e.target.matches(".sub") ? input.value - 1 : parseInt(input.value) + 1
 
     if (value < 1 || value > 100) {
-      input.value = 1;
+      input.value = value < 1 ? 1 : 100;
       return;
     };
     input.value = value;
@@ -245,9 +250,7 @@ document.addEventListener("submit", e => {
 // Keyboard Events
 document.body.addEventListener("keyup", e => {
   if (e.target.matches("[index]")) {
-
     const index = parseInt(e.target.getAttribute("index"));
-
     if (e.key === "ArrowUp") {
       const elem = e.target.parentElement
                     .querySelector("[index='"+ (index - 1) +"']");
@@ -265,6 +268,8 @@ document.body.addEventListener("keyup", e => {
       return;
     }
   }
+  if (e.key == "Escape" && !document.querySelector(":focus")) closeOverlay();
+
 })
 
 // Transition Events
@@ -280,8 +285,5 @@ document.body.addEventListener("change", e => {
     document.querySelectorAll(".sel > input").forEach( input => {
       input.checked = checked;
     })
-  }
-  if (e.target.matches(".sel > input")) {
-    document.querySelector(".selAll > input").checked = false;
   }
 })

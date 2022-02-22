@@ -23,7 +23,7 @@
       echo base64_decode(explode(",", $row['image'], 2)[1]);
       die;
     }
-    echo imagejpeg(imagescale(imagecreatefromstring(base64_decode(explode(",", $row['image'], 2)[1])), $pic, -1, IMG_BICUBIC));
+    echo imagejpeg(imagescale(imagecreatefromstring(base64_decode(explode(",", $row['image'], 2)[1])), -1, $pic));
     die;
   } 
   noImage();

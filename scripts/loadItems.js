@@ -34,7 +34,7 @@ fetch("/api/getItems.php")
         aCart.onclick = add
         iDesc.innerText = item.description
         title.textContent = item.name
-        price.textContent = "$" + item.price
+        price.textContent = "₱" + item.price
 
         image.src = `/assets/getImage.php?item=${item.id}&res=300`
         container.append(items)

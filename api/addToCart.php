@@ -10,7 +10,7 @@
   $item = $_GET['item'];
   $count = $_GET['quantity'] ?? 1;
 
-  if ($count > 100) response(false, "You are not allowed to add more than 100 items into your cart");
+  if ($count > 100) response(false, "You are not allowed to add more than 100 pieces of the same item into your cart");
 
   $sql = "SELECT id,visible FROM items WHERE id=$item AND visible=1";
   $res = mysqli_query($conn, $sql);
@@ -23,6 +23,7 @@
   if ($res->num_rows === 1 ) {
     $row = mysqli_fetch_assoc($res);
     $count += $row['quantity'];
+    if ($count > 100) response(false, "You are not allowed to add more than 100 pieces of the same item into your cart");
     $sql = "UPDATE carts SET quantity=$count WHERE item_id=$item AND u_id=$u_id";
     $res = mysqli_query($conn, $sql);
     if (!$res) response(false, "Internal Error Occurred");

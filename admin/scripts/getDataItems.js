@@ -54,7 +54,7 @@ fetch("/api/itemHandler.php")
         iDesc.innerText = item.description
         price.innerText = item.price.replace("\n", "");
         
-        image.src = `/assets/getImage.php?item=${item.id}&res=110`
+        image.src = `/assets/getImage.php?item=${item.id}&res=120`
 
         shown.append(iShow)
         container.append(items)
@@ -64,7 +64,7 @@ fetch("/api/itemHandler.php")
   })
 
 document.body.addEventListener("click", e => {
-  if (e.target.matches("#additem, #additem *")) {
+  if (e.target.matches("#additem")) {
     const modal = document.querySelector("template#entry")
     const overlay = document.querySelector("#overlay")
     if (!overlay && !e.target.matches(".closeModal, .closeModal *")) {
@@ -75,7 +75,7 @@ document.body.addEventListener("click", e => {
   }
 
   // Delete Item
-  if (e.target.matches("#delitem, #delitem *")) {
+  if (e.target.matches("#delitem")) {
     const selected = document.querySelectorAll(".sel > input:checked");
     if (selected.length <= 0) {
       popup("You must have at least one selection to do that", "warn")
@@ -98,7 +98,7 @@ document.body.addEventListener("click", e => {
 
 
   // Edit Item
-  if (e.target.matches("#edititem, #edititem *")) {
+  if (e.target.matches("#edititem")) {
     const selected = document.querySelectorAll(".sel > input:checked")
     if (selected.length != 1 ) {
       popup("You must only have one selection to edit", "warn")

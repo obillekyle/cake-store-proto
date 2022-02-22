@@ -58,6 +58,7 @@
     }
     .itemImage {
       box-shadow: 0 0 0 1px var(--main-80);
+      object-fit: cover;
     }
     .sel, .drop {
       width: 24px;
@@ -76,7 +77,6 @@
       }
     }
     .itemImage {
-      object-fit: contain;
       width: 75px;
       height: 75px;
     }

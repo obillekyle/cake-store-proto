@@ -27,10 +27,10 @@ if (isset($_POST['method'])) {
 
     if ($cost < 0 || $cost > 1000000 ||
         strlen($name) > 100 ||
-        strlen($jpeg) > 10240576 ||
         strlen($desc) > 2000
         ) response(false, "Invalid data sent");
-
+    if (strlen($jpeg) > 1024576) response(false, "Image must not exceed 1 megabytes");
+    
     if ( $i_id <= 0) {
       $sql = "INSERT into items (name, price, description, image, visible, stock) 
               VALUES ('$name', '$cost', '$desc', '$jpeg', '$show', '$amnt')";

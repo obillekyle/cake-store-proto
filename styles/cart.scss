@@ -6,11 +6,9 @@
   border-top: 1px solid var(--main-60);
   min-height: 124px;
   card {
-    margin-top: 4px;
     display: grid;
     padding: 0 8px;
-    gap: 12px;
-    row-gap: 0;
+    column-gap: 12px;
     grid-template-columns: 24px 75px   1fr;
   }                     // sel  pic  details
   .sel {
@@ -29,17 +27,20 @@
       background: none !important;
     }
   }
+  card + card {
+    border-top: 1px solid var(--shade)
+  }
   card {
     min-height: 100px;
     align-items: center;
-    &:nth-of-type(even) {
-      background: var(--shade);
-    }
-    @include shadow;
     .image {
       width: 75px;
       height: 75px;
       object-fit: cover;
+    }
+    .price {
+      font-weight: 600;
+      color: var(--main-60);
     }
     .holder2 {
       display: grid;
@@ -125,6 +126,7 @@ footer {
   height: 60px;
   z-index: 20;
   padding: 16px;
+  background: var(--bg, var(--secondary));
   align-items: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   label {
@@ -137,25 +139,105 @@ footer {
 }
 
 #overlay {
-  #confirm {
+  #order {
+    position: relative;
     background-color: white;
     border: 1px solid var(--main-60);
     padding: 16px;
     gap: 4px;
     justify-content: center;
+    background: var(--secondary);
+    width: clamp(450px, 95%, 1000px);
+    max-width: 100%;
+    height: 95%;
+    @media (max-width: 450px) {
+      height: 100%;
+      border: none;
+    }
+    @media (max-height: 450px) {
+      height: 100%;
+    }
+    .items {
+      display: block;
+      background: var(--shade);
+      card {
+        grid-template-columns: 75px 1fr;
+        grid-template-rows: 90px 70px;
+        padding: 4px 12px;
+        background: var(--secondary);
+        textarea {
+          grid-column: 1 / span 3;
+          resize: none;
+          height: 60px;
+          align-self: flex-start;
+        }
+      }
+      card + card {
+        margin-top: 12px;
+      }
+      .info {
+        grid-template-columns: 1fr 125px;
+        column-gap: 6px;
+        grid-template-rows: 40px 40px 70px;
+        input {
+          min-width: 50px;
+        }
+        textarea, h3 {
+          grid-column: 1 / span 2 !important;
+        }
+      }
+      padding: 16px;
+      position: absolute;
+      inset: 55px 0 100px 0;
+      overflow-y: auto;
+      .sel, .value {
+        display: none;
+      }
+    }
+    sep {
+      height: 1px;
+      background: var(--main-60);
+      margin: 12px;
+      display: flex;
+    }
+    footer {
+      height: 100px;
+      background: var(--secondary);
+      flex-wrap: wrap;
+      padding: 0 16px;
+      method {
+        display: flex;
+        font-weight: 600;
+        align-items: center;
+        width: 100%;
+        p {
+          flex-grow: 1;
+          margin: 0;
+        }
+        select {
+          padding: 0;
+          background: transparent;
+          border: none;
+          option {
+            background-color: var(--bg, var(--main-10));
+          }
+          &:focus {
+            box-shadow: none;
+            color: var(--outline, var(--main-50))
+          }
+        }
+      }
+      position: absolute;
+      inset: auto 0 0 0;
+    }
     h2 {
       margin: 0;
-      text-align: center;
+      display: inline;
       margin-bottom: 48px;
     }
     p {
       color: dimgray;
       background: smoke;
-    }
-    div {
-      gap: 8px;
-      display: flex;
-      justify-content: center;
     }
   }
 }

@@ -19,7 +19,16 @@ function checkLogin() {
       }
 
       const name = pHolder.querySelector("p");
-      const pImg = pHolder.querySelector("img");
+      let pImg;
+      if (pHolder.querySelector("img")) {
+        pImg = pHolder.querySelector("img");
+      } else {
+        pImg = document.createElement("img");
+        pImg.width = "28"
+        pImg.height = "28"
+        pImg.alt = "Account Profile"
+        pHolder.append(pImg);
+      }
       pImg.src = `/assets/getProfile.php?user=${data.u_id}`
       name.textContent = data.user
 

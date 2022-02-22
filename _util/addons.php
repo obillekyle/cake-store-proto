@@ -5,8 +5,7 @@ error_reporting(0);
 include "./_util/db.php";
 include "./_util/getConfig.php";
 
-$site = $config["site"];
-$title = $site["title"];
+$title = $config["site"]["title"];
 $user_id = $_SESSION["id"] ?? "";
 $username = $_SESSION["user"] ?? "";
 $user_role = $_SESSION["role"] ?? "";

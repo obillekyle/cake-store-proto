@@ -87,7 +87,7 @@ function confirm(elem, method) {
       return;
     }
     array.forEach( id => {
-      document.querySelector("[data-id='" + id +"']").remove();
+      document.querySelectorAll("[data-id='" + id +"']").remove();
     })
     reset();
     closeOverlay();
