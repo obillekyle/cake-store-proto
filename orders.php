@@ -15,7 +15,7 @@
   <script defer src="/scripts/loginscreen2.js"></script>
   <script defer src="/scripts/sidebar.js"></script>
   <script defer src="/scripts/orders.js"></script>
-  <link rel="stylesheet" href="/styles/orders.css">
+  <link rel="stylesheet" href="/styles/orders.min.css">
 </head>
 <body>
 <?php

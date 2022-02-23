@@ -969,7 +969,7 @@ actions form {
   color: transparent;
 }
 .card .description {
-  margin: 5px;
+  margin: 5px auto;
   grid-area: iDesc;
   font-size: 13px;
   font-weight: 300;

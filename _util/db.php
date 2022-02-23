@@ -1,7 +1,5 @@
 <?php
 
-  ini_set( "display_errors", 1 );
-
   include "alert.php";
   include "getConfig.php";
   

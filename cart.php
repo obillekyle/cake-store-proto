@@ -15,7 +15,7 @@
   <script defer src="/scripts/loginscreen2.js"></script>
   <script defer src="/scripts/sidebar.js"></script>
   <script defer src="/scripts/getCart.js"></script>
-  <link rel="stylesheet" href="/styles/cart.css">
+  <link rel="stylesheet" href="/styles/cart.min.css">
 </head>
 <body>
 <?php

@@ -14,7 +14,7 @@
   <script defer src="/admin/scripts/main.js"></script>
   <script defer src="/admin/scripts/sidebar.js"></script>
   <script defer src="/admin/scripts/getOrders.js"></script>
-  <link rel="stylesheet" href="/admin/styles/orders.css">
+  <link rel="stylesheet" href="/admin/styles/orders.min.css">
 </head>
 <body>
 <?php

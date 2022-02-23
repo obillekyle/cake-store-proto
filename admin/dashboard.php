@@ -13,7 +13,7 @@
   <?= Scripts() ?>
   <script defer src="/admin/scripts/main.js"></script>
   <script defer src="/admin/scripts/sidebar.js"></script>
-  <link rel="stylesheet" href="/admin/styles/dashboard.css">
+  <link rel="stylesheet" href="/admin/styles/dashboard.min.css">
   <script defer src="/admin/scripts/getDashData.js"></script>
 </head>
 <body>

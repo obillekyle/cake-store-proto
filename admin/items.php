@@ -12,7 +12,7 @@
   <?= Scripts() ?>
   <script defer src="/admin/scripts/main.js"></script>
   <script defer src="/admin/scripts/sidebar.js"></script>
-  <link rel="stylesheet" href="/admin/styles/items.css">
+  <link rel="stylesheet" href="/admin/styles/items.min.css">
   <script defer src="/admin/scripts/getDataItems.js"></script>
 </head>
 <body>
