@@ -65,6 +65,11 @@ function getDropdown(role) {
       icon: "mdi-cart-outline",
     },
     {
+      name: "Profile",
+      link: "/user.php",
+      icon: "mdi-account-outline"
+    },
+    {
       name: "Logout",
       clickFn: () => {
         fetch("/api/loginHandler.php?logout=true")

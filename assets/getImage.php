@@ -1,11 +1,22 @@
 <?php
 
   include '../_util/db.php';
-  //ini_set("display_errors", 1);
+  $pic = $_GET['res'] ?? false;
+  
+  if (isset($_GET['logo'])) {
+    $image = imagecreatefrompng("logo.png");
+    if (!$image) noImage();
+    header("Content-type: image/png");
+    if (!$pic) {
+      imagepng($image);
+      die;
+    }
+    echo imagepng(imagescale($image, -1, $pic));
+    die;
+  }
 
   if (!isset($_GET["item"])) noImage();
 
-  $pic = $_GET['res'] ?? false;
   $uid = $_GET['item'];
   $sql = "SELECT id,image FROM items WHERE id=$uid";
   $res = mysqli_query($conn,$sql);

@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+session_set_cookie_params(315360000);
 include "../_util/db.php";
 include "../_util/encrypt.php";
 include "../_util/response.php";
@@ -27,13 +28,15 @@ if (!$method) {
   }
   $user = $_SESSION['user'];
   $u_id = $_SESSION['u_id'];
+  $name = $_SESSION['name'];
   $role = $_SESSION['role'] ?? "Member";
   $json = array(
     "success" => true,
     "message" => "Refreshed profile",
     "user" => $user,
     "u_id" => $u_id,
-    "role" => $role
+    "role" => $role,
+    "name" => $name
   );
   echo(json_encode($json));
 }
@@ -44,7 +47,7 @@ if (strtolower($method) === "login") {
   $pass = encrypt($_POST["pass"]);
   if (isset($_SESSION["user"])) response(false, "You are already logged in");
 
-  $sql = "SELECT * FROM users WHERE username='$user' OR email='$user'";
+  $sql = "SELECT username, id, role, fullname, email, password FROM users WHERE username='$user' OR email='$user'";
   $res = mysqli_query($conn, $sql);
   if (!$res || !$res->num_rows == 1) response(false, "User doesn't exist on our database");
   $row = mysqli_fetch_assoc($res);
@@ -57,6 +60,8 @@ if (strtolower($method) === "login") {
   $_SESSION["user"] = $row["username"];
   $_SESSION["u_id"] = $row["id"];
   $_SESSION["role"] = $row["role"] ?? "Member";
+  $_SESSION["name"] = $row["fullname"] ?? "Anonymous";
+  $_SESSION["mail"] = $row["email"] ?? "Anonymous";
 
   response(true, "Successfully logged in");
 }
@@ -96,8 +101,10 @@ if (strtolower($method) === "register") {
   
   $row = mysqli_fetch_assoc($resu);
   $_SESSION["user"] = $user;
-  $_SESSION["role"] = $row['role'] ?? "Member";
+  $_SESSION["name"] = $name;
+  $_SESSION["mail"] = $mail;
   $_SESSION["u_id"] = $row['id'];
+  $_SESSION["role"] = $row['role'] ?? "Member";
 
   response(true, "Successfully registered!");
 }

@@ -1,5 +1,5 @@
 <?php
-  include "../_util/addons.php";
+  include $_SERVER["DOCUMENT_ROOT"] . "/_util/addons.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
     <h1>Orders</h1>
 
     <actions>
-      <label class="button" color="main" tabindex="0">
+      <label class="button" data-disabled color="main" tabindex="0">
         <span class="iconify" data-icon="mdi-filter-variant"></span>
         <p>Filter</p>
       </label>
@@ -71,7 +71,12 @@
       <div class="price"></div>
       <?= Checkbox("mdi-chevron-down", "drop", "" , "", "", "mdi-chevron-up") ?>
     </card>
-    <detail></detail>
+    <detail>
+      <label>Informations</label>
+      <p class="info"></p>
+      <label>Details</label>
+      <p class="details"></p>
+    </detail>
   </template>
 
 </body>

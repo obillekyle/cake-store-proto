@@ -41,7 +41,7 @@ function getDropdown() {
     },
     {
       name: "Profile",
-      link: "/cart.php",
+      link: "/user.php",
       icon: "mdi-account-outline",
     },
     {

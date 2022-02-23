@@ -17,7 +17,7 @@ function build(data) {
     popup(data.message, "warn")
     return;
   }
-  document.querySelectorAll("card").remove()
+  document.querySelectorAll("card, detail").remove()
   data.items.forEach((item, i) => {
     const container = document.querySelector(".table")
     const card = document.querySelector("#card").content.cloneNode(true)
@@ -27,19 +27,22 @@ function build(data) {
     const user = card.querySelector(".username")
     const amnt = card.querySelector(".quantity")
     const cost = card.querySelector(".price")
-    const info = card.querySelector("detail")
+    const drop = card.querySelector("detail")
+    const desc = card.querySelector("detail .details")
+    const info = card.querySelector("detail .info")
 
     amnt.textContent = item.amnt
     name.textContent = item.name ?? "??"
     user.textContent = item.user ?? "??"
     cost.textContent = item.cost ?? "??"
-    info.textContent = item.info ?? ""
+    desc.innerText = item.desc ?? ""
+    info.innerText = item.info ?? ""
 
     main.dataset.id = item.o_id ?? "??"
     main.setAttribute("index", i + 1)
     img1.alt = item.name + " Image"
     img1.src = `/assets/getImage.php?item=${item.i_id}&res=75`
-    info.dataset.id = item.o_id;
+    drop.dataset.id = item.o_id;
 
     card.querySelector(".sel>input").id = "order_" + item.o_id
     card.querySelector(".drop>input").id = "drop_" + item.o_id

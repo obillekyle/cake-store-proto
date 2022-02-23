@@ -1,5 +1,5 @@
 <?php
-  include "../_util/addons.php";
+  include $_SERVER["DOCUMENT_ROOT"] . "/_util/addons.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
     <items>
       <nav id="navigator">
         
-        <?= Checkbox("mdi-checkbox-blank-outline", "", "", "selAll", "", "mdi-checkbox-marked") ?>
+        <?= Checkbox("mdi-checkbox-blank-outline", "selAll", "", "selAll", "", "mdi-checkbox-marked") ?>
         <total>
           <p> Total items: </p>
         </total>

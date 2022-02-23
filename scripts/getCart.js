@@ -141,6 +141,9 @@ document.addEventListener("click", e => {
           </card>
           <sep></sep>
         </div>
+        <button id="close" outline-button color="red" onclick="closeOverlay()">
+          <span class="iconify" data-icon="mdi-close"></span>
+        </button>
         <footer>
           <method>
             <p>Payment Method</p>
@@ -325,14 +328,17 @@ function showSuccess() {
   let overlay = document.querySelector("#overlay")
   if (!overlay) {
     overlay = document.createElement("div");
-    overlay.id = "overlay"
+    overlay.id = "overlay";
+    document.body.append(overlay);
   }
 
   overlay.innerHTML = `
-    <div class="#confirm">
+    <div id="confirm">
       <h2>Order Placed Successfully</h2>
       <p>We will update you by calling your phone number</p>
-      <button onclick="closeOverlay()">OK</button
+      <div>
+        <button outline-button color="green" onclick="closeOverlay()">OK</button>
+      </div>
     </div>
   `
 }

@@ -9,8 +9,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>🛒 Your Cart | <?= $title ?></title>
+
   <?= Scripts() ?>
-  <script defer src="/scripts/loginscreen.js"></script>
+  <script defer src="/scripts/loginscreen2.js"></script>
   <script defer src="/scripts/sidebar.js"></script>
   <script defer src="/scripts/getCart.js"></script>
   <link rel="stylesheet" href="/styles/cart.css">

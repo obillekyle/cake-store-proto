@@ -18,7 +18,7 @@ if (isset($_POST["method"])) {
     $sql = "DELETE FROM users WHERE id IN ($ids)";
     $res = mysqli_query($conn, $sql);
     if (!$res) Error2();
-    response(true, "Deleted all users with ids: $id");
+    response(true, "Deleted all users with ids: $ids");
   }
 
   // Edit User Data
@@ -60,7 +60,7 @@ $offset = $_GET["offset"] ?? 0;
 
 $sql = "CREATE TEMPORARY TABLE temp_tb SELECT * FROM users;
         ALTER TABLE temp_tb DROP profile, DROP password;
-        SELECT * FROM temp_tb";
+        SELECT * FROM temp_tb WHERE id !=" . $_SESSION['u_id'];
 $res = mysqli_multi_query($conn, $sql);
 
 if (!mysqli_next_result($conn)) Error();

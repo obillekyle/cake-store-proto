@@ -23,6 +23,8 @@ items {
     }
     actions {
       gap: 6px;
+      background: transparent;
+      border: none;
       display: flex;
       flex: 0 1 auto;
       margin-left: auto;
@@ -145,7 +147,7 @@ items {
       "i d d d"
       "o o o o"
     ;
-    grid-template-columns: 104px 1fr 1fr 75px;
+    grid-template-columns: 104px 1fr 1fr 100px;
     grid-template-rows: 40px 32px 62px 1fr;
     h2 {
       grid-area: h;

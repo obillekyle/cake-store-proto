@@ -1,5 +1,5 @@
 <?php
-  include "../_util/addons.php";
+  include $_SERVER["DOCUMENT_ROOT"] . "/_util/addons.php";
 ?>
 
 <!DOCTYPE html>

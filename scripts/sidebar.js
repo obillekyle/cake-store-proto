@@ -52,12 +52,6 @@ const sidebar = [
     acon: "mdi-shopping",
     link: "/orders.php"
   },
-  {
-    name: "Settings",
-    icon: "mdi-cog-outline",
-    acon: "mdi-cog",
-    link: "/settings.php"
-  }
 ]
 
 sidebar.forEach((item, index) => {

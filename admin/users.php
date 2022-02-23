@@ -1,5 +1,5 @@
 <?php
-  include "../_util/addons.php";
+  include $_SERVER["DOCUMENT_ROOT"] . "/_util/addons.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
     <h1>Users</h1>
 
     <actions>
-      <label class="button" color="main" tabindex="0">
+      <label data-disabled class="button" color="main" tabindex="0">
         <span class="iconify" data-icon="mdi-filter-variant"></span>
         <p>Filter</p>
       </label>
@@ -35,15 +35,7 @@
           <span class="iconify" data-icon="mdi-magnify"></span>
         </button>
       </form>
-      <label class="button accept" color="blue" tabindex="0">
-        <span class="iconify" data-icon="mdi-pencil-outline"></span>
-        <p>Edit</p>
-      </label>
-      <label class="button deny" color="orange" tabindex="0">
-        <span class="iconify" data-icon="mdi-cancel"></span>
-        <p>Ban</p>
-      </label>
-      <label class="button deny" color="red" tabindex="0">
+      <label class="button delete" color="red" tabindex="0">
         <span class="iconify" data-icon="mdi-trash-can-outline"></span>
         <p>Purge</p>
       </label>

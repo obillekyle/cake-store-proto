@@ -2,8 +2,8 @@
 
 session_start();
 error_reporting(0);
-include "./_util/db.php";
-include "./_util/getConfig.php";
+include "db.php";
+include "getConfig.php";
 
 $title = $config["site"]["title"];
 $user_id = $_SESSION["id"] ?? "";

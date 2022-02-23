@@ -3,7 +3,6 @@
 .table {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--main-60);
   min-height: 124px;
   card {
     display: grid;
@@ -200,6 +199,14 @@ footer {
       margin: 12px;
       display: flex;
     }
+    #close {
+      position: absolute;
+      inset: 16px 16px auto auto;
+      padding: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
     footer {
       height: 100px;
       background: var(--secondary);
@@ -228,7 +235,7 @@ footer {
         }
       }
       position: absolute;
-      inset: auto 0 0 0;
+      inset: auto 0 0 0 !important;
     }
     h2 {
       margin: 0;
@@ -237,7 +244,33 @@ footer {
     }
     p {
       color: dimgray;
+    }
+  }
+  #confirm {
+    background-color: white;
+    border: 1px solid var(--main-60);
+    padding: 16px;
+    gap: 4px;
+    justify-content: center;
+    h2 {
+      margin: 0;
+      text-align: center;
+    }
+    p {
+      color: dimgray;
       background: smoke;
     }
+    div {
+      gap: 8px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+main {
+  padding-bottom: 70px;
+  @media (max-width: 450px) {
+    padding-bottom: 125px;
   }
 }

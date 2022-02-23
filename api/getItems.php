@@ -62,7 +62,7 @@ if (isset($_GET['pending'])) {
   response(false, "err");
 }
 
-$limit = $_GET['limit'] ?? 10;
+$limit = $_GET['limit'] ?? 100;
 $offset = $_GET['o'] ?? 0;
 
 if ($limit > 50) $limit = 10;
@@ -76,11 +76,8 @@ $sql = "SELECT name,id,description,price,stock
         LIMIT $limit OFFSET $offset";
 $res = mysqli_query($conn, $sql);
 if (!$res) response(false, "Error");
-$a = [];
-while ($row = mysqli_fetch_assoc($res)) {
-  // Spread operator, spreads previous array then adds the new item
-  // works the same as `array_push($a, $row)`
-  $a = [...$a, $row];
-}
-response(true, "Fetched successfully", Array("items" => $a ));
+$a = Array("items" => []);
+while ($row = mysqli_fetch_assoc($res)) array_push($a['items'], $row);
+
+response(true, "Fetched successfully", $a );
 

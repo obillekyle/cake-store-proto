@@ -26,6 +26,7 @@ const sidebarelem = document.querySelector("#sidebar")
 sidebarelem.classList.add("sidebar", !settings("sidebaropen")? "compact" : null)
 
 document.body.addEventListener("click", e => {
+  if (e.target.disabled || e.target.matches("[data-disabled]")) return
   if (e.target.matches("[sidetoggle]")) {
     var isOpen = settings("sidebaropen")
     sidebarelem.classList.toggle("compact", isOpen)
@@ -58,12 +59,6 @@ const sidebar = [
     acon: "mdi-account-multiple",
     link: "/admin/users.php"
   },
-  {
-    name: "Site Settings",
-    icon: "mdi-cog-outline",
-    acon: "mdi-cog",
-    link: "/admin/settings.php"
-  }
 ]
 
 sidebar.forEach((item, index) => {

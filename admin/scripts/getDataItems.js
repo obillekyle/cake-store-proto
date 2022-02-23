@@ -38,7 +38,49 @@ fetch("/api/itemHandler.php")
         const shown = items.querySelector(".visibility")
         const label = check.querySelector("label")
         const iShow = document.createElement("span");
+function build(data) {
+  if (!data.success) {
+    popup(data.message, "warn")
+    return;
+  }
+  document.querySelectorAll("card, detail").remove()
+  data.items.forEach((item, i) => {
+    const container = document.querySelector(".table")
+    const card = document.querySelector("#card").content.cloneNode(true)
+    const main = card.querySelector("card")
+    const img1 = card.querySelector(".itemImage")
+    const name = card.querySelector(".itemName")
+    const user = card.querySelector(".username")
+    const amnt = card.querySelector(".quantity")
+    const cost = card.querySelector(".price")
+    const drop = card.querySelector("detail")
+    const desc = card.querySelector("detail .details")
+    const info = card.querySelector("detail .info")
 
+    amnt.textContent = item.amnt
+    name.textContent = item.name ?? "??"
+    user.textContent = item.user ?? "??"
+    cost.textContent = item.cost ?? "??"
+    desc.innerText = item.desc ?? ""
+    info.innerText = item.info ?? ""
+
+    main.dataset.id = item.o_id ?? "??"
+    main.setAttribute("index", i + 1)
+    img1.alt = item.name + " Image"
+    img1.src = `/assets/getImage.php?item=${item.i_id}&res=75`
+    drop.dataset.id = item.o_id;
+
+    card.querySelector(".sel>input").id = "order_" + item.o_id
+    card.querySelector(".drop>input").id = "drop_" + item.o_id
+    card.querySelector(".sel>input").ariaLabel = "Select "+ item.name+" with id " + item.o_id;
+    card.querySelector(".drop>input").ariaLabel = "Show more details for " + item.name + " with id " + item.o_id;
+    card.querySelector(".sel>label").setAttribute("for", "order_" +item.o_id)
+    card.querySelector(".drop>label").setAttribute("for", "drop_" +item.o_id)
+
+    container.append(card);
+
+  })
+}
 
         iCard.setAttribute("data-id", item.id)
         iCard.setAttribute("data-info", JSON.stringify(item));
@@ -64,6 +106,7 @@ fetch("/api/itemHandler.php")
   })
 
 document.body.addEventListener("click", e => {
+  if (e.target.disabled || e.target.matches("[data-disabled]")) return
   if (e.target.matches("#additem")) {
     const modal = document.querySelector("template#entry")
     const overlay = document.querySelector("#overlay")
@@ -121,7 +164,7 @@ document.body.addEventListener("click", e => {
     amnt.value = itemInf.stock;
     desc.value = itemInf.description;
     show.checked = Boolean(itemInf.visible);
-    cost.value = itemInf.price.replace("$\n", "");
+    cost.value = itemInf.price.replace("₱", "");
     
     jpeg.innerHTML = ""
     overlay.querySelector("#editItem").dataset.id = itemInf.id;
@@ -162,6 +205,7 @@ document.body.addEventListener("click", e => {
 
   
 document.body.addEventListener("change", e=> {
+  if (e.target.disabled || e.target.matches("[data-disabled]")) return
   if (e.target.matches("#selAll")) {
     const checked = e.target.checked
     const element = document.querySelectorAll(".sel")
@@ -279,3 +323,11 @@ function process(element, id) {
   }
 }
 
+loop();
+const total = document.querySelector("total p");
+function loop() {
+  setTimeout(_ => {
+    total.textContent = "Total items: " + document.querySelectorAll(".item").length 
+    loop();
+  }, 1000)
+}

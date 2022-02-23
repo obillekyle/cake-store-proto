@@ -42,7 +42,15 @@
     "admin/styles/main.min.css.map": true,
     "admin/styles/orders.min.css": true,
     "admin/styles/orders.min.css.map": true,
-    "admin/styles/users.min.css.map": true
+    "admin/styles/users.min.css.map": true,
+    "styles/profile.min.css": true,
+    "styles/profile.min.css.map": true,
+    "styles/profile.css.map": true,
+    "styles/profile.css": true,
+    "styles/orders.css.map": true,
+    "styles/orders.css": true,
+    "styles/orders.min.css": true,
+    "styles/orders.min.css.map": true
   },
   "hide-files.files": [
     "styles/main.css.map",
@@ -81,7 +89,15 @@
     "admin/styles/main.min.css.map",
     "admin/styles/orders.min.css",
     "admin/styles/orders.min.css.map",
-    "admin/styles/users.min.css.map"
+    "admin/styles/users.min.css.map",
+    "styles/profile.min.css",
+    "styles/profile.min.css.map",
+    "styles/profile.css.map",
+    "styles/profile.css",
+    "styles/orders.css.map",
+    "styles/orders.css",
+    "styles/orders.min.css",
+    "styles/orders.min.css.map"
   ],
   "cSpell.words": [
     "acon",
@@ -91,6 +107,7 @@
     "DATEDIFF",
     "filterby",
     "fullname",
+    "imagecreatefromfilename",
     "imageresize",
     "lastlogin",
     "msidebar",

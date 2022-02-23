@@ -110,6 +110,15 @@ main {
   }
 }
 
+actions {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 61px;
+  z-index: 10;
+  background: var(--secondary);
+  border-bottom: 1px solid var(--main-60);
+}
+
 :focus {
   outline: none;
   box-shadow: 0 0 0 4px var(--outline, var(--main-60)) inset;
@@ -206,6 +215,12 @@ label + input[type=file] {
   margin: 0;
   margin-top: 2px;
   font-weight: 500;
+}
+.button[data-disabled], .button[disabled] {
+  opacity: 0.7;
+  color: gray;
+  background: var(--disabled, var(--main-10));
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
 .hide {
@@ -490,6 +505,44 @@ label + input[type=file] {
   width: 49px;
 }
 
+@media (max-width: 450px) {
+  body {
+    font-size: 13px;
+  }
+
+  .sidebar {
+    inset: auto 0 0 0;
+    flex-direction: row;
+    height: 49px;
+    padding: 0 8px;
+    justify-content: space-evenly;
+    border: none;
+    border-top: 1px solid var(--main-60);
+    width: unset;
+  }
+  .sidebar .sideitem p {
+    display: none !important;
+  }
+  .sidebar .sep {
+    display: none;
+  }
+  .sidebar .icons {
+    display: none;
+  }
+
+  .compact {
+    width: unset;
+  }
+
+  main {
+    margin: 0;
+    padding: 16px 8px 64px 8px;
+  }
+
+  footer {
+    inset: auto 0 49px 0 !important;
+  }
+}
 #popups {
   gap: 8px;
   display: flex;
@@ -608,7 +661,7 @@ label + input[type=file] {
 }
 .dropdown div:not(.separator) p {
   margin: 0;
-  margin-top: 4px;
+  margin-top: 2px;
   font-weight: 500;
 }
 
@@ -688,15 +741,21 @@ form.search button .loading {
   position: fixed;
   z-index: 200;
   inset: 0 0 0 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   animation: overlayAnimation 0.1s reverse;
+  height: 100vh;
 }
 #overlay > * {
   -webkit-animation-delay: 150ms;
           animation-delay: 150ms;
   animation: childAnimation 0.1s reverse;
+}
+#overlay > img {
+  max-width: 90%;
+  max-height: 60%;
 }
 #overlay #confirm {
   background: white;
@@ -708,11 +767,13 @@ form.search button .loading {
 #overlay #confirm h2 {
   margin: 0;
   text-align: center;
-  margin-bottom: 48px;
 }
 #overlay #confirm p {
   color: dimgray;
   background: smoke;
+}
+#overlay #confirm h2 + div {
+  margin-top: 36px;
 }
 #overlay #confirm div {
   gap: 8px;
@@ -755,11 +816,27 @@ form.search button .loading {
     transform: scale(0.9);
   }
 }
-@media (max-width: 450px) {
-  ::-webkit-scrollbar {
-    display: none;
-  }
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6d6d6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9a9996 #ffffff;
+}
+
 #container {
   gap: 12px;
   display: grid;
@@ -768,11 +845,38 @@ form.search button .loading {
   justify-content: space-evenly;
   grid-template-columns: repeat(auto-fill, 250px);
   width: 100%;
+  gap: 12px;
 }
 @media (max-width: 700px) {
   #container {
     grid-template-columns: 1fr;
-    gap: 12px;
+  }
+}
+
+actions {
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  inset: 61px 0 auto 0;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-bottom: 1px solid var(--main-20);
+  gap: 12px;
+}
+actions form {
+  width: clamp(450px, 70%, 800px);
+  margin: 0 auto;
+  max-width: 100%;
+}
+@media (max-width: 450px) {
+  actions .button {
+    padding: 0 8px;
+    width: 40px;
+    min-width: 40px;
+  }
+  actions .button p {
+    display: none !important;
   }
 }
 

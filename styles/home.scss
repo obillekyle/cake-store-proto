@@ -8,9 +8,35 @@
   justify-content: space-evenly;
   grid-template-columns: repeat(auto-fill, 250px);
   width: 100%;
+  gap: 12px;
   @media (max-width: 700px) {
     grid-template-columns: 1fr;
-    gap: 12px;
+  }
+}
+
+actions {
+  display: flex;
+  position: sticky;
+  inset: 61px 0 auto 0;
+  width: 100%;
+  padding: 16px ;
+  border: none;
+  border-bottom: 1px solid var(--main-20);
+  gap: 12px;
+  form {
+    width: clamp(450px, 70%, 800px);
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  @media (max-width: 450px) {
+    .button{
+      padding: 0 8px;
+      width: 40px;
+      min-width: 40px;
+      p {
+        display: none !important;
+      }
+    }
   }
 }
 

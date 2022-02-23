@@ -37,7 +37,7 @@ function popup(message, level) {
   const popups = document.querySelector('#popups')
   const mPopup = document.createElement("div")
   const button = document.createElement("button")
-  var   bColor = "gray"
+  var   bColor = "gray";
 
   const remove = () => {
     mPopup.remove()
@@ -50,10 +50,10 @@ function popup(message, level) {
   mPopup.append(button)
 
   if (!message) console.warn("Message is %cnull", "color: cyan");
-  if (level === "info")     bColor = "gray"
-  if (level === "warn")     bColor = "orange"
-  if (level === "verbose")  bColor = "green"
-  if (level === "error")    bColor = "red"
+  if (level === "info")     bColor = "gray";
+  if (level === "warn")     bColor = "orange";
+  if (level === "verbose")  bColor = "green";
+  if (level === "error")    bColor = "red";
 
   mPopup.style.boxShadow = "-6px 0 0 " + bColor
   popups.append(mPopup)
@@ -84,14 +84,14 @@ function perf(label, number) {
 }
 
 function closeOverlay() {
-  const overlay = document.querySelector("#overlay")
+  const overlay = document.querySelector("#overlay:last-of-type")
   overlay?.classList.add("hideOverlay")
 }
 
 // Events
 // Keyboard events
 document.addEventListener("keyup", e => {
-  if (e.target.disabled || e.target.dataset.disabled) return
+  if (e.target.disabled || e.target.matches("[data-disabled]")) return
   if (e.key === "Enter" && e.target.matches(":focus")) {
     e.target.click()
     e.target.dataset.disabled = true
@@ -132,6 +132,7 @@ document.addEventListener("keyup", e => {
 })
 
 function outline(target) {
+  if (target.disabled || target.matches("[data-disabled]")) return
   target.dataset.disabled = true
   target.style.boxShadow = "0 0 0 2px var(--outline, var(--main-80)) inset"
   setTimeout(_ => {
@@ -143,11 +144,13 @@ function outline(target) {
 // Click Events
 document.addEventListener("click", e => {
   // Outline Events
+  if (e.target.disabled || e.target.matches("[data-disabled]")) return
   if (e.target.matches(":focus")) outline(e.target);
   if (e.target.matches(":focus *, [tabindex] *")) {
     if (e.target.matches(".checkbox *")) return;
     let target = e.target.parentMatches(":focus");
     if (!target || target.onclick) return;
+    if (target.disabled || target.dataset.disabled) return;
     target.click();
     outline(target);
   }
@@ -249,6 +252,7 @@ document.addEventListener("submit", e => {
 
 // Keyboard Events
 document.body.addEventListener("keyup", e => {
+  if (e.target.disabled || e.target.matches("[data-disabled]")) return
   if (e.target.matches("[index]")) {
     const index = parseInt(e.target.getAttribute("index"));
     if (e.key === "ArrowUp") {
@@ -285,5 +289,34 @@ document.body.addEventListener("change", e => {
     document.querySelectorAll(".sel > input").forEach( input => {
       input.checked = checked;
     })
+  }
+  if (e.target.matches(".sel > input")) {
+    const checked = e.target.checked;
+    if (!checked) {
+      document.querySelector(".selAll > input").checked = false;
+      return;
+    }
+    if (!document.querySelector(".sel > input:not(:checked)")) {
+      document.querySelector(".selAll > input").checked = true;
+      return;
+    }
+  }
+})
+
+window.addEventListener("pagehide", e => {
+  console.log("HEllo");
+})
+
+document.addEventListener("click", e => {
+  if (e.target.matches(".card img.image, card .image")) {
+    let id;
+    if (e.target.matches("card .image")) id = e.target.parentMatches(".card, card").dataset.item;
+    else id = e.target.parentMatches(".card, card").dataset.id;
+    const overlay = document.createElement("div");
+
+    overlay.id = "overlay";
+    overlay.onclick = closeOverlay;
+    overlay.innerHTML = "<img class='big' alt='' src='/assets/getImage.php?item=" + id + "'/> "
+    document.body.append(overlay);
   }
 })

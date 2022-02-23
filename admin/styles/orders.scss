@@ -87,16 +87,24 @@
     }
     min-height: 0px;
     height: 0;
-    overflow: hidden;
-    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+    word-wrap: break-word;
     min-width: 600px;
-    align-items: center;
     width: 100%;
     transition: height 0.2s;
     padding: 0 16px;
+    label {
+      color: var(--main-60);
+      font-weight: bold;
+    }
+    p {
+      font-size: 13px;
+      margin: 0;
+    }
   }
   .show {
-    height: 50px;
+    height: 100px;
   }
   
 }
@@ -105,6 +113,7 @@ actions {
   display: flex;
   min-height: 56px;
   align-items: center;
+  border: none;
   gap: 8px;
   .button {
     width: 96px;
@@ -120,30 +129,6 @@ actions {
       p {
         display: none !important;
       }
-    }
-  }
-}
-
-#overlay {
-  #confirm {
-    background-color: white;
-    border: 1px solid var(--main-60);
-    padding: 16px;
-    gap: 4px;
-    justify-content: center;
-    h2 {
-      margin: 0;
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    p {
-      color: dimgray;
-      background: smoke;
-    }
-    div {
-      gap: 8px;
-      display: flex;
-      justify-content: center;
     }
   }
 }
