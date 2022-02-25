@@ -16,6 +16,7 @@
   * Apache Server
   * MySQL Server
   * phpMyAdmin
+  * php gd extension
 
   <ins>**FOR EDITING**
   * Visual Studio Code Editor
