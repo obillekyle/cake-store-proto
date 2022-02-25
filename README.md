@@ -8,7 +8,6 @@
   ⏱️ Responsive\
   🔧 Configurable\
   📝 Crud Complete\
-  🔒 Built with security in mind\
   &nbsp;
 
   # Requirements 
